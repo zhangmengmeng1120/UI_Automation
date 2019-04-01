@@ -31,6 +31,10 @@ text_login = (By.ID, 'com.nexttao.shopforce.test:id/text_login')
 shop_title = (By.ID, 'com.nexttao.shopforce.test:id/shopcar_title')
 # 展开菜单button
 menu_btn_layout = (By.ID, 'com.nexttao.shopforce.test:id/menu_btn_layout')
+# 登出
+logout = (By.XPATH, "//android.widget.TextView[contains(@text,'登出')]")
+# 确认登出
+text_confirm = (By.ID, 'com.nexttao.shopforce.test:id/text_confirm')
 
 
 # 商品排列组合
@@ -103,3 +107,20 @@ def login(basefunction, business, username, password):
         print '登录成功'
     except:
         raise Exception('登录失败')
+
+
+# 获取屏幕尺寸
+def GetPageSize(self):
+    x = self.driver.get_window_size()['width']
+    y = self.driver.get_window_size()['height']
+    return (x, y)
+
+
+# 上拉加载更多
+def swipe_up(self, page_size,s_x,s_y,e_x,e_y):
+    sx = page_size[0] * s_x
+    sy = page_size[1] * s_y
+    ex = page_size[0] * e_x
+    ey = page_size[1] * e_y
+    self.driver.swipe(sx, sy, ex, ey, '500')
+

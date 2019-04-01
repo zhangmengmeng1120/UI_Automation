@@ -38,7 +38,7 @@ hint_text = (By.ID, 'com.nexttao.shopforce.test:id/hint_text')
 register_name = (By.ID, 'com.nexttao.shopforce.test:id/register_name')
 # 会员性别
 sex = [(By.ID, 'com.nexttao.shopforce.test:id/checkman'),
-(By.ID, 'com.nexttao.shopforce.test:id/checkwomen')]
+       (By.ID, 'com.nexttao.shopforce.test:id/checkwomen')]
 # 注册button
 register_save = (By.ID, 'com.nexttao.shopforce.test:id/register_save')
 # 确认注册

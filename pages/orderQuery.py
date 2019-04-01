@@ -4,7 +4,6 @@ from base_appium_function.base_function import BaseFunction
 import orderQueryLocation as oqLocation
 import basePage
 import time
-import random
 from basePage import login
 
 
@@ -88,7 +87,7 @@ class QuerySaleOrder(BaseFunction):
         根据订单状态筛选订单
         '''
         # 登录
-        self.login(business, username, password)
+        login(business, username, password)
         time.sleep(3)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)

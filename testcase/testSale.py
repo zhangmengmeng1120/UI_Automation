@@ -2,6 +2,7 @@
 # encoding:utf-8
 import unittest
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import time
@@ -14,7 +15,6 @@ import random
 
 
 class info(unittest.TestCase):
-
     def setUp(self):
         self.driver = init_driver()
         self.business = 'crm_test'
@@ -23,25 +23,27 @@ class info(unittest.TestCase):
         self.product_code = '1821012'
         self.telphone = '13511831143'
         self.order_no = '2365'
-        self.tags = '%s%s%s%s'%(chr(random.randint(65, 90)),chr(random.randint(97, 122)),chr(random.randint(97, 122)), chr(random.randint(65, 90)))
+        self.tags = '%s%s%s%s' % (
+            chr(random.randint(65, 90)), chr(random.randint(97, 122)), chr(random.randint(97, 122)),
+            chr(random.randint(65, 90)))
         self.rack_name = '%s%s%s%s' % (
-        chr(random.randint(65, 90)), chr(random.randint(97, 122)), chr(random.randint(97, 122)),
-        chr(random.randint(65, 90)))
+            chr(random.randint(65, 90)), chr(random.randint(97, 122)), chr(random.randint(97, 122)),
+            chr(random.randint(65, 90)))
         self.transferin_order = '4339'
 
     def shop_card(self):
         test_info = SalePage(self.driver)
-        test_info.sale_test(self.business,self.username,self.password,self.product_code,self.telphone)
+        test_info.sale_test(self.business, self.username, self.password, self.product_code, self.telphone)
         time.sleep(10)
 
     def select_order(self):
         test_info = QuerySaleOrder(self.driver)
-        test_info.search_order_info(self.business,self.username,self.password,self.order_no)
+        test_info.search_order_info(self.business, self.username, self.password, self.order_no)
         time.sleep(10)
 
     def filtrate_order(self):
         test_info = QuerySaleOrder(self.driver)
-        test_info.filtrate_order(self.business,self.username,self.password)
+        test_info.filtrate_order(self.business, self.username, self.password)
 
     def member_registers(self):
         test_info = MemberCenter(self.driver)
@@ -49,14 +51,18 @@ class info(unittest.TestCase):
 
     def member_center(self):
         test_info = MemberCenter(self.driver)
-        test_info.member_query(self.business,self.username,self.password,self.telphone,self.tags)
+        test_info.member_query(self.business, self.username, self.password, self.telphone, self.tags)
 
-    #调拨入库高级搜索
+    # 调拨入库高级搜索
     def transfer_search(self):
         test_info = TransferIn(self.driver)
-        test_info.transfer_query(self.business,self.username,self.password,self.transferin_order)
+        test_info.transfer_by_orderno(self.business, self.username, self.password, self.transferin_order)
+
+    # 调拨入库高级搜索,根据日期
+    def transfer_search_by_date(self):
+        test_info = TransferIn(self.driver)
+        test_info.transfer_by_date(self.business, self.username, self.password)
 
     # 释放实例，释放资源
     def tearDown(self):
         self.driver.quit()
-

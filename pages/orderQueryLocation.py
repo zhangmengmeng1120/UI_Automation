@@ -22,9 +22,11 @@ fold_image = (By.ID, 'com.nexttao.shopforce.test:id/fold_image')
 # 点击全部订单
 query_order_title = (By.ID, 'com.nexttao.shopforce.test:id/query_order_title')
 # 订单状态
-state_num = random.randint(1,4)
-order_of_state = (By.XPATH, "//android.widget.TextView[%s]"%state_num)
+state_num = random.randint(1, 4)
+order_of_state = (By.XPATH, "//android.widget.TextView[%s]" % state_num)
 # 退货订单状态的上一级id
-num = random.randint(1,10)
-refund_order = (By.XPATH, "//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[%s]/android.widget.LinearLayout[1]/android.widget.TextView[2]"%num)
-exchange_order = (By.XPATH, "//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[%s]/android.widget.LinearLayout[1]/android.widget.TextView[2]"%num)
+num = random.randint(1, 10)
+refund_order = (By.XPATH,
+                "//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[%s]/android.widget.LinearLayout[1]/android.widget.TextView[2]" % num)
+exchange_order = (By.XPATH,
+                  "//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[%s]/android.widget.LinearLayout[1]/android.widget.TextView[2]" % num)

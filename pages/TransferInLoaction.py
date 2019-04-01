@@ -41,3 +41,9 @@ search_up_cancel = (By.ID, 'com.nexttao.shopforce.test:id/search_up_cancel')
 order_state = (By.XPATH, "//android.widget.TextView[contains(@text,'已完成')]")
 # 调拨单号
 allocate_name = (By.ID, 'com.nexttao.shopforce.test:id/allocate_name')
+# 高级搜索，选择开始日期
+start_at = (By.ID, 'com.nexttao.shopforce.test:id/start_at')
+# 高级搜索，选择结束日期
+end_at = (By.ID, 'com.nexttao.shopforce.test:id/end_at')
+# 高级搜索，选择日
+day = (By.ID, 'com.nexttao.shopforce.test:id/day')

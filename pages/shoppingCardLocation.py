@@ -5,7 +5,9 @@ from selenium.webdriver.common.by import By
 # 商品搜索
 keypad_search_btn = (By.ID, 'com.nexttao.shopforce.test:id/keypad_search_btn')
 # 商品尺码
-product_sizes = [(By.XPATH,"//android.widget.TextView[contains(@text,'M')]"),(By.XPATH,"//android.widget.TextView[contains(@text,'L')]"),(By.XPATH,"//android.widget.TextView[contains(@text,'XL')]")]
+product_sizes = [(By.XPATH, "//android.widget.TextView[contains(@text,'M')]"),
+                 (By.XPATH, "//android.widget.TextView[contains(@text,'L')]"),
+                 (By.XPATH, "//android.widget.TextView[contains(@text,'XL')]")]
 # 商品颜色
 product_colors = [(By.XPATH, "//android.widget.TextView[contains(@text,'黑色')]")]
 # 添加商品
