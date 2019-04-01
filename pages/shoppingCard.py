@@ -15,7 +15,7 @@ class SalePage(BaseFunction):
     # 下单操作，购物车页面
     def sale_test(self, business, username, password, product_code, telphone):
 
-        login(business, username, password)
+        login(self, business, username, password)
         time.sleep(3)
         # 输入商品编码
         for i in product_code:

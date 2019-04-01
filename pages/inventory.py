@@ -32,7 +32,7 @@ class Inventory(BaseFunction):
         # 确认
         self.text_confirm = (By.ID, 'com.nexttao.shopforce.test:id/text_confirm')
 
-        login(business,username,password)
+        login(self, business,username,password)
 
     def inventory_filtrate(self):
         '''
