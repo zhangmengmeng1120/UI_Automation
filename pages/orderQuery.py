@@ -88,7 +88,7 @@ class QuerySaleOrder(BaseFunction):
         根据订单状态筛选订单
         '''
         # 登录
-        self.login(business, username, password)
+        login(self, business, username, password)
         time.sleep(3)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)

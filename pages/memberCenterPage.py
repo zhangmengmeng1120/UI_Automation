@@ -35,7 +35,7 @@ class MemberCenter(BaseFunction):
         '''
         old_tag = mcLocation.old_tag % tag
 
-        login(business, username, password)
+        login(self, business, username, password)
         time.sleep(5)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)
