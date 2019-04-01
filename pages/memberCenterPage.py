@@ -79,7 +79,7 @@ class MemberCenter(BaseFunction):
         注册会员，添加新会员标签
         '''
 
-        self.login(business, username, password)
+        login(self,business, username, password)
         time.sleep(5)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)
