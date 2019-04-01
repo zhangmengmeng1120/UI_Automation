@@ -84,11 +84,11 @@ class TransferIn(BaseFunction):
         # 点击查询
         self.click_element(Tlocation.search_query)
         time.sleep(2)
-        if self.find_element(Tlocation.order_state):
+        el = self.find_element(Tlocation.order_state)
+        if el:
             if self.find_element(Tlocation.title).text == '待签收' and self.find_element(Tlocation.order_state).text == '已完成' and transferin_order in self.find_element(Tlocation.allocate_name).text:
                 print '验证成功'
         else:
-            el = self.find_element(Tlocation.order_state)
             raise Exception('查找元素Tlocation.order_state的结果为%s'%el)
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-from selenium.webdriver.common.by import By
+import orderQueryLocation as oqLocation
 import basePage
 import time
 import random
@@ -26,7 +26,7 @@ class QuerySaleOrder(BaseFunction):
             self.find_element(basePage.shop_title)
             print '登录成功'
         except:
-            self.fail('登录失败')
+            raise Exception('登录失败')
 
     # 获取屏幕尺寸
     def GetPageSize(self):
@@ -61,22 +61,6 @@ class QuerySaleOrder(BaseFunction):
         :param order_no: 订单号，用于高级搜索
         :return:
         '''
-        # 查询订单button
-        self.module_item_name = (By.XPATH, "//android.widget.TextView[contains(@text,'查询订单')]")
-        # 扫描订单编号
-        self.scan_layout = (By.ID, 'com.nexttao.shopforce.test:id/scan_layout')
-        # 定位第一个销售订单的位置
-        self.order_list_item_layout = (By.ID, 'com.nexttao.shopforce.test:id/order_list_item_layout')
-        # 高级搜索页面
-        self.order_search = (By.ID, 'com.nexttao.shopforce.test:id/order_search')
-        # 小票输入框
-        self.search_order_no = (By.ID, 'com.nexttao.shopforce.test:id/search_order_no')
-        # 搜索button
-        self.search_query = (By.ID, 'com.nexttao.shopforce.test:id/search_query')
-        # 重置button
-        self.search_clear = (By.ID, 'com.nexttao.shopforce.test:id/search_clear')
-        # 展开订单信息
-        self.fold_image = (By.ID, 'com.nexttao.shopforce.test:id/fold_image')
 
         # 登录
         self.login(business,username,password)
@@ -84,14 +68,14 @@ class QuerySaleOrder(BaseFunction):
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)
         # 点击查询订单
-        self.click_element(self.module_item_name)
+        self.click_element(oqLocation.module_item_name)
         try:
-            self.find_element(self.scan_layout)
+            self.find_element(oqLocation.scan_layout)
         except:
-            self.fail('进入查询订单页面出现异常')
+            raise Exception('进入查询订单页面出现异常')
         time.sleep(10)
         # 展开订单信息
-        self.click_element(self.fold_image)
+        self.click_element(oqLocation.fold_image)
         # 下拉刷新
         self.swipe_down()
         time.sleep(10)
@@ -100,17 +84,17 @@ class QuerySaleOrder(BaseFunction):
             self.swipe_up()
             time.sleep(3)
         # 点击高级搜索
-        self.click_element(self.order_search)
+        self.click_element(oqLocation.order_search)
         # 输入搜索内容，小票号
-        self.input_element(self.search_order_no,order_no)
+        self.input_element(oqLocation.search_order_no,order_no)
         # 清空搜索内容
-        self.click_element(self.search_clear)
-        if self.find_element(self.search_order_no).text=='请输入销售订单号':
+        self.click_element(oqLocation.search_clear)
+        if self.find_element(oqLocation.search_order_no).text=='请输入销售订单号':
             print '内容清空完成'
         # 输入搜索内容，小票号
-        self.input_element(self.search_order_no, order_no)
+        self.input_element(oqLocation.search_order_no, order_no)
         # 点击搜索
-        self.click_element(self.search_query)
+        self.click_element(oqLocation.search_query)
         time.sleep(3)
         # 退出搜索
         self.swipe_down()
@@ -119,47 +103,32 @@ class QuerySaleOrder(BaseFunction):
         '''
         根据订单状态筛选订单
         '''
-        # 查询订单button
-        self.module_item_name = (By.XPATH, "//android.widget.TextView[contains(@text,'查询订单')]")
-        # 扫描订单编号
-        self.scan_layout = (By.ID, 'com.nexttao.shopforce.test:id/scan_layout')
-        # 点击全部订单
-        self.query_order_title = (By.ID, 'com.nexttao.shopforce.test:id/query_order_title')
-        # 订单状态
-        state_num = random.randint(1,4)
-        self.order_of_state = (By.XPATH, "//android.widget.TextView[%s]"%state_num)
-        # 退货订单状态的上一级id
-        num = random.randint(1,10)
-        self.refund_order = (By.XPATH, "//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[%s]/android.widget.LinearLayout[1]/android.widget.TextView[2]"%num)
-        self.exchange_order = (By.XPATH, "//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[%s]/android.widget.LinearLayout[1]/android.widget.TextView[2]"%num)
-
-
         # 登录
         self.login(business, username, password)
         time.sleep(3)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)
         # 点击查询订单
-        self.click_element(self.module_item_name)
+        self.click_element(oqLocation.module_item_name)
         try:
-            self.find_element(self.scan_layout)
+            self.find_element(oqLocation.scan_layout)
         except:
-            print '进入查询订单页面出现异常'
+            raise Exception('进入查询订单页面出现异常')
         time.sleep(5)
         # 点击全部订单
-        self.click_element(self.query_order_title)
+        self.click_element(oqLocation.query_order_title)
         # 随机选择全部订单、普通订单、退货订单、换货订单
-        self.click_element(self.order_of_state)
-        if self.find_element(self.query_order_title).text=='退货订单':
-            if self.find_element(self.refund_order).text =='退':
+        self.click_element(oqLocation.order_of_state)
+        if self.find_element(oqLocation.query_order_title).text=='退货订单':
+            if self.find_element(oqLocation.refund_order).text =='退':
                 print '订单筛选正常'
             else:
-                print '订单筛选异常'
-        elif self.find_element(self.query_order_title).text=='换货订单':
-            if self.find_element(self.exchange_order).text == '换':
+                raise Exception('订单筛选异常')
+        elif self.find_element(oqLocation.query_order_title).text=='换货订单':
+            if self.find_element(oqLocation.exchange_order).text == '换':
                 print '订单筛选正常'
             else:
-                print '订单筛选异常'
+                raise Exception('订单筛选异常')
         time.sleep(5)
 
 
