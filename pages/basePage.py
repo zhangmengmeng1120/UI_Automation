@@ -124,3 +124,10 @@ def swipe_up(self, page_size,s_x,s_y,e_x,e_y):
     ey = page_size[1] * e_y
     self.driver.swipe(sx, sy, ex, ey, '500')
 
+# 下拉刷新
+def swipe_down(self,page_size,s_x,s_y,e_x,e_y):
+    sx = page_size[0] * s_x
+    sy = page_size[1] * s_y
+    ex = page_size[0] * e_x
+    ey = page_size[1] * e_y
+    self.driver.swipe(sx, sy, ex, ey, '500')

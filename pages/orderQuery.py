@@ -4,36 +4,12 @@ from base_appium_function.base_function import BaseFunction
 import orderQueryLocation as oqLocation
 import basePage
 import time
-from basePage import login
+from basePage import login, GetPageSize, swipe_up, swipe_down
 
 
 class QuerySaleOrder(BaseFunction):
     def __init__(self, driver):
         BaseFunction.__init__(self, driver)
-
-    # 获取屏幕尺寸
-    def GetPageSize(self):
-        x = self.driver.get_window_size()['width']
-        y = self.driver.get_window_size()['height']
-        return (x, y)
-
-    # 上拉加载更多
-    def swipe_up(self):
-        s = self.GetPageSize()
-        sx = s[0] * 0.1
-        sy = s[1] * 0.75
-        ex = s[0] * 0.1
-        ey = s[1] * 0.25
-        self.driver.swipe(sx, sy, ex, ey, '500')
-
-    # 下拉刷新
-    def swipe_down(self):
-        s = self.GetPageSize()
-        sx = s[0] * 0.1
-        sy = s[1] * 0.2
-        ex = s[0] * 0.1
-        ey = s[1] * 0.62
-        self.driver.swipe(sx, sy, ex, ey, '500')
 
     def search_order_info(self, business, username, password, order_no):
         '''
@@ -59,12 +35,20 @@ class QuerySaleOrder(BaseFunction):
         time.sleep(10)
         # 展开订单信息
         self.click_element(oqLocation.fold_image)
+        downs_x = 0.1
+        downs_y = 0.2
+        downe_x = 0.1
+        downe_y = 0.62
         # 下拉刷新
-        self.swipe_down()
+        swipe_down(self, GetPageSize(self), downs_x, downs_y, downe_x, downe_y)
         time.sleep(10)
+        s_x = 0.1
+        s_y = 0.75
+        e_x = 0.1
+        e_y = 0.25
         for i in range(3):
             # 上拉加载
-            self.swipe_up()
+            swipe_up(self, GetPageSize(self), s_x, s_y, e_x, e_y)
             time.sleep(3)
         # 点击高级搜索
         self.click_element(oqLocation.order_search)
@@ -80,7 +64,19 @@ class QuerySaleOrder(BaseFunction):
         self.click_element(oqLocation.search_query)
         time.sleep(3)
         # 退出搜索
-        self.swipe_down()
+        downs_x = 0.1
+        downs_y = 0.2
+        downe_x = 0.1
+        downe_y = 0.62
+        swipe_down(self, GetPageSize(self), downs_x, downs_y, downe_x, downe_y)
+        self.click_element(basePage.menu_btn_layout)
+        sx = 0.1
+        sy = 0.75
+        ex = 0.1
+        ey = 0.25
+        swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
+        self.click_element(basePage.logout)
+        self.click_element(basePage.text_confirm)
 
     def filtrate_order(self, business, username, password):
         '''
