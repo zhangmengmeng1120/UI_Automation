@@ -5,28 +5,12 @@ import orderQueryLocation as oqLocation
 import basePage
 import time
 import random
+from basePage import login
+
 
 class QuerySaleOrder(BaseFunction):
-    def __init__(self,driver):
-        BaseFunction.__init__(self,driver)
-
-    def login(self,business,username,password):
-        # 输入商户号
-        self.input_element(basePage.edit_business,business)
-        # 输入用户名
-        self.input_element(basePage.edit_username, username)
-        # 定位username，防止自动提示导致回删数据
-        self.click_element(basePage.edit_username)
-        # 输入密码
-        self.input_element(basePage.edit_password, password)
-        # 点击登录
-        self.click_element(basePage.text_login)
-        # 验证是否登录成功
-        try:
-            self.find_element(basePage.shop_title)
-            print '登录成功'
-        except:
-            raise Exception('登录失败')
+    def __init__(self, driver):
+        BaseFunction.__init__(self, driver)
 
     # 获取屏幕尺寸
     def GetPageSize(self):
@@ -42,6 +26,7 @@ class QuerySaleOrder(BaseFunction):
         ex = s[0] * 0.1
         ey = s[1] * 0.25
         self.driver.swipe(sx, sy, ex, ey, '500')
+
     # 下拉刷新
     def swipe_down(self):
         s = self.GetPageSize()
@@ -51,8 +36,7 @@ class QuerySaleOrder(BaseFunction):
         ey = s[1] * 0.62
         self.driver.swipe(sx, sy, ex, ey, '500')
 
-
-    def search_order_info(self,business,username,password,order_no):
+    def search_order_info(self, business, username, password, order_no):
         '''
         下拉刷新，上拉加载，根据订单号模糊搜索订单
         :param business: 商户号
@@ -63,7 +47,7 @@ class QuerySaleOrder(BaseFunction):
         '''
 
         # 登录
-        self.login(business,username,password)
+        login(self, business, username, password)
         time.sleep(3)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)
@@ -86,10 +70,10 @@ class QuerySaleOrder(BaseFunction):
         # 点击高级搜索
         self.click_element(oqLocation.order_search)
         # 输入搜索内容，小票号
-        self.input_element(oqLocation.search_order_no,order_no)
+        self.input_element(oqLocation.search_order_no, order_no)
         # 清空搜索内容
         self.click_element(oqLocation.search_clear)
-        if self.find_element(oqLocation.search_order_no).text=='请输入销售订单号':
+        if self.find_element(oqLocation.search_order_no).text == '请输入销售订单号':
             print '内容清空完成'
         # 输入搜索内容，小票号
         self.input_element(oqLocation.search_order_no, order_no)
@@ -99,7 +83,7 @@ class QuerySaleOrder(BaseFunction):
         # 退出搜索
         self.swipe_down()
 
-    def filtrate_order(self,business,username,password):
+    def filtrate_order(self, business, username, password):
         '''
         根据订单状态筛选订单
         '''
@@ -119,20 +103,14 @@ class QuerySaleOrder(BaseFunction):
         self.click_element(oqLocation.query_order_title)
         # 随机选择全部订单、普通订单、退货订单、换货订单
         self.click_element(oqLocation.order_of_state)
-        if self.find_element(oqLocation.query_order_title).text=='退货订单':
-            if self.find_element(oqLocation.refund_order).text =='退':
+        if self.find_element(oqLocation.query_order_title).text == '退货订单':
+            if self.find_element(oqLocation.refund_order).text == '退':
                 print '订单筛选正常'
             else:
                 raise Exception('订单筛选异常')
-        elif self.find_element(oqLocation.query_order_title).text=='换货订单':
+        elif self.find_element(oqLocation.query_order_title).text == '换货订单':
             if self.find_element(oqLocation.exchange_order).text == '换':
                 print '订单筛选正常'
             else:
                 raise Exception('订单筛选异常')
         time.sleep(5)
-
-
-
-
-
-

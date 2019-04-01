@@ -6,16 +6,18 @@ import basePage
 import time
 import random
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-class BestSelling(BaseFunction):
-    def __init__(self,driver):
-        BaseFunction.__init__(self,driver)
 
-    def login(self,business,username,password):
+class BestSelling(BaseFunction):
+    def __init__(self, driver):
+        BaseFunction.__init__(self, driver)
+
+    def login(self, business, username, password):
         # 输入商户号
-        self.input_element(basePage.edit_business,business)
+        self.input_element(basePage.edit_business, business)
         # 输入用户名
         self.input_element(basePage.edit_username, username)
         # 定位username，防止自动提示导致回删数据

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
+from basePage import login
 import basePage
 import TransferInLoaction as Tlocation
 import time
@@ -11,24 +12,6 @@ sys.setdefaultencoding('utf-8')
 class TransferIn(BaseFunction):
     def __init__(self,driver):
         BaseFunction.__init__(self,driver)
-
-    def login(self,business,username,password):
-        # 输入商户号
-        self.input_element(basePage.edit_business,business)
-        # 输入用户名
-        self.input_element(basePage.edit_username, username)
-        # 定位username，防止自动提示导致回删数据
-        self.click_element(basePage.edit_username)
-        # 输入密码
-        self.input_element(basePage.edit_password, password)
-        # 点击登录
-        self.click_element(basePage.text_login)
-        # 验证是否登录成功
-        try:
-            self.find_element(basePage.shop_title)
-            print '登录成功'
-        except:
-            raise Exception('登录失败')
 
     # 获取屏幕尺寸
     def GetPageSize(self):
@@ -66,7 +49,7 @@ class TransferIn(BaseFunction):
         :return:
         '''
         # 登录
-        self.login(business,username,password)
+        login(self, business, username, password)
         time.sleep(5)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)

@@ -3,36 +3,19 @@
 from base_appium_function.base_function import BaseFunction
 import shoppingCardLocation as sclocation
 import basePage
+from basePage import login
 import time
+
 
 class SalePage(BaseFunction):
 
-    def __init__(self,driver):
-        BaseFunction.__init__(self,driver)
-    # 封装login方法
-    def login(self,business,username,password):
-        # 输入商户号
-        self.input_element(basePage.edit_business,business)
-        # 输入用户名
-        self.input_element(basePage.edit_username, username)
-        # 定位username，防止自动提示导致回删数据
-        self.click_element(basePage.edit_username)
-        # 输入密码
-        self.input_element(basePage.edit_password, password)
-        # 点击登录
-        self.click_element(basePage.text_login)
-        # 验证是否登录成功
-        try:
-            self.find_element(basePage.shop_title)
-            print '登录成功'
-        except:
-            self.fail('登录失败')
-
+    def __init__(self, driver):
+        BaseFunction.__init__(self, driver)
 
     # 下单操作，购物车页面
-    def sale_test(self,business,username,password,product_code,telphone):
+    def sale_test(self, business, username, password, product_code, telphone):
 
-        self.login(business,username,password)
+        login(business, username, password)
         time.sleep(3)
         # 输入商品编码
         for i in product_code:
@@ -79,7 +62,7 @@ class SalePage(BaseFunction):
             self.click_element(sclocation.settle_btn)
         except:
             raise Exception('上传销售订单出现异常')
-        #选择现金支付
+        # 选择现金支付
         self.click_element(sclocation.pay_cash)
         # 确认支付
         self.click_element(sclocation.confirm_pay)
@@ -91,7 +74,3 @@ class SalePage(BaseFunction):
             print '支付成功'
         except:
             raise Exception('支付出现异常')
-
-
-
-

@@ -3,33 +3,18 @@
 from base_appium_function.base_function import BaseFunction
 import memberCenterLocation as mcLocation
 import basePage
+from basePage import login
 import time
 import random
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-class MemberCenter(BaseFunction):
-    def __init__(self,driver):
-        BaseFunction.__init__(self,driver)
 
-    def login(self,business,username,password):
-        # 输入商户号
-        self.input_element(basePage.edit_business,business)
-        # 输入用户名
-        self.input_element(basePage.edit_username, username)
-        # 定位username，防止自动提示导致回删数据
-        self.click_element(basePage.edit_username)
-        # 输入密码
-        self.input_element(basePage.edit_password, password)
-        # 点击登录
-        self.click_element(basePage.text_login)
-        # 验证是否登录成功
-        try:
-            self.find_element(basePage.shop_title)
-            print '登录成功'
-        except:
-            raise Exception('登录失败')
+class MemberCenter(BaseFunction):
+    def __init__(self, driver):
+        BaseFunction.__init__(self, driver)
 
     # 注册会员
     def createPhone(self):
@@ -44,14 +29,13 @@ class MemberCenter(BaseFunction):
         a3 = ['', '立', '玲', '国']
         return random.choice(a1) + random.choice(a2) + random.choice(a3)
 
-
-    def member_query(self,business,username,password,telphone,tag):
+    def member_query(self, business, username, password, telphone, tag):
         '''
         搜索会员，会员画像，会员资料，历史订单，优惠券
         '''
         old_tag = mcLocation.old_tag % tag
 
-        self.login(business,username,password)
+        login(business, username, password)
         time.sleep(5)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)
@@ -90,11 +74,10 @@ class MemberCenter(BaseFunction):
         self.click_element(mcLocation.member_back)
         time.sleep(2)
 
-    def member_register(self,business,username,password,tag):
+    def member_register(self, business, username, password, tag):
         '''
         注册会员，添加新会员标签
         '''
-
 
         self.login(business, username, password)
         time.sleep(5)
@@ -145,8 +128,3 @@ class MemberCenter(BaseFunction):
             print '跳转到购物车页面成功带上会员'
         except:
             raise Exception('异常')
-
-
-
-
-

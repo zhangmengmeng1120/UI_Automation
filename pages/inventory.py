@@ -3,6 +3,7 @@
 from base_appium_function.base_function import BaseFunction
 from selenium.webdriver.common.by import By
 import basePage
+from basePage import login
 import time
 import random
 import sys
@@ -12,24 +13,6 @@ sys.setdefaultencoding('utf-8')
 class Inventory(BaseFunction):
     def __init__(self,driver):
         BaseFunction.__init__(self,driver)
-
-    def login(self,business,username,password):
-        # 输入商户号
-        self.input_element(basePage.edit_business,business)
-        # 输入用户名
-        self.input_element(basePage.edit_username, username)
-        # 定位username，防止自动提示导致回删数据
-        self.click_element(basePage.edit_username)
-        # 输入密码
-        self.input_element(basePage.edit_password, password)
-        # 点击登录
-        self.click_element(basePage.text_login)
-        # 验证是否登录成功
-        try:
-            self.find_element(basePage.shop_title)
-            print '登录成功'
-        except:
-            self.fail('登录失败')
 
     def inventory_create(self,business,username,password,rack_name):
         '''
@@ -49,7 +32,7 @@ class Inventory(BaseFunction):
         # 确认
         self.text_confirm = (By.ID, 'com.nexttao.shopforce.test:id/text_confirm')
 
-        self.login(business,username,password)
+        login(business,username,password)
 
     def inventory_filtrate(self):
         '''
