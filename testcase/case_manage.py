@@ -29,7 +29,7 @@ class info(unittest.TestCase):
         self.rack_name = '%s%s%s%s' % (
             chr(random.randint(65, 90)), chr(random.randint(97, 122)), chr(random.randint(97, 122)),
             chr(random.randint(65, 90)))
-        self.transferin_order = '4339'
+        self.transferin_order = '1'
 
     def shop_card(self):
         test_info = SalePage(self.driver)
@@ -56,7 +56,13 @@ class info(unittest.TestCase):
     # 调拨入库高级搜索
     def transfer_search(self):
         test_info = TransferIn(self.driver)
-        test_info.transfer_by_orderno(self.business, self.username, self.password, self.transferin_order)
+        test_info.transfer_by_orderno(self.business, self.username, self.password, self.transferin_order,
+                                      self.product_code)
+
+    # 调拨入库确认签收
+    def transfer_confirm(self):
+        test_info = TransferIn(self.driver)
+        test_info.transfer_confirm(self.business, self.username, self.password)
 
     # 调拨入库高级搜索,根据日期
     def transfer_search_by_date(self):

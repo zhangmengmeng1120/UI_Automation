@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # encoding:utf-8
-
+import time
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -15,8 +15,9 @@ class BaseFunction(object):
         except:
             return False
 
-    def click_element(self, loc):
+    def click_element(self, loc, timeout=5):
         self.find_element(loc).click()
+        time.sleep(timeout)
 
     def input_element(self, loc, text):
         self.inp = self.find_element(loc)

@@ -13,6 +13,19 @@ take_receive = (By.ID, 'com.nexttao.shopforce.test:id/take_receive')
 details_text = (By.ID, 'com.nexttao.shopforce.test:id/details_text')
 # 填写收货数量，这是h5页面
 
+# 调拨单代签收状态
+transfer_confirm_state = (By.ID, "com.nexttao.shopforce.test:id/state")
+# 调拨单确认签收按钮
+transfer_confirm_button = (By.ID, "com.nexttao.shopforce.test:id/take_receive")
+# transfer_confirm_button = (By.XPATH, "//android.widget.TextView[contains(@text,'确认签收')]")
+
+# 差异签收弹出框
+transfer_diff_wizard = (By.ID, "com.nexttao.shopforce.test:id/multiple_dialog_container")
+# 确认签收按钮
+text_confirm_button = (By.ID, "com.nexttao.shopforce.test:id/text_confirm")
+# 差异收货button
+diff_confirm_button = (By.XPATH, "//android.widget.TextView[contains(@text,'差异收货')]")
+
 # 订单状态
 state_num = random.randint(1, 4)
 order_of_state = (By.XPATH, "//android.widget.TextView[%s]" % state_num)
@@ -31,6 +44,16 @@ search_order_no = (By.ID, 'com.nexttao.shopforce.test:id/search_order_no')
 search_order_sku = (By.ID, 'com.nexttao.shopforce.test:id/search_order_sku')
 # 发货店仓输入框
 search_order_org = (By.ID, 'com.nexttao.shopforce.test:id/search_order_org')
+#  调拨类型
+type_edit = (By.ID, 'com.nexttao.shopforce.test:id/type_edit')
+#  调拨类型option
+transfer_options1 = (By.ID, 'com.nexttao.shopforce.test:id/options1')
+transfer_options_submit = (By.ID, 'com.nexttao.shopforce.test:id/btnSubmit')
+
+# 日期范围
+all_check = (By.ID, 'com.nexttao.shopforce.test:id/all_check')
+out_check = (By.ID, 'com.nexttao.shopforce.test:id/out_check')
+in_check = (By.ID, 'com.nexttao.shopforce.test:id/in_check')
 # 操作人输入框
 operate_edit = (By.ID, 'com.nexttao.shopforce.test:id/operate_edit')
 # 重置
