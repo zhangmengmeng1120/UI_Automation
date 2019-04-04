@@ -10,6 +10,7 @@ from  pages.shoppingCard import SalePage
 from pages.orderQuery import QuerySaleOrder
 from pages.memberCenterPage import MemberCenter
 from pages.TransferIn import TransferIn
+from pages.bestSelling import BestSelling
 from base_appium_function.init_driver import init_driver
 import random
 
@@ -64,11 +65,9 @@ class info(unittest.TestCase):
         test_info = TransferIn(self.driver)
         test_info.transfer_confirm(self.business, self.username, self.password)
 
-    # 调拨入库高级搜索,根据日期
-    def transfer_search_by_date(self):
-        test_info = TransferIn(self.driver)
-        test_info.transfer_by_date(self.business, self.username, self.password)
-
+    def bestsell(self):
+        test_info =BestSelling(self.driver)
+        test_info.best_info(self.business, self.username, self.password)
     # 释放实例，释放资源
     def tearDown(self):
         self.driver.quit()

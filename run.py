@@ -21,6 +21,8 @@ if __name__ == '__main__':
     # suite.addTest(info('transfer_search'))
     # 调拨入库，调拨签收
     # suite.addTest(info('transfer_confirm'))
+    # 畅销排行
+    suite.addTest(info('bestsell'))
     report_dir = './test_report'
     now = time.strftime("%Y-%m-%d_%H-%M-%S")
     report_name = '{0}/{1}.html'.format(report_dir, now)
