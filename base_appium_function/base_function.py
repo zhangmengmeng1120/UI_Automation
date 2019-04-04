@@ -15,7 +15,7 @@ class BaseFunction(object):
         except:
             return False
 
-    def click_element(self, loc, timeout=5):
+    def click_element(self, loc, timeout=1):
         self.find_element(loc).click()
         time.sleep(timeout)
 

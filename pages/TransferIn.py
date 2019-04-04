@@ -58,7 +58,6 @@ class TransferIn(BaseFunction):
         '''
         # 登录
         login(self, business, username, password)
-        time.sleep(5)
         # 点击菜单
         self.click_element(basePage.menu_btn_layout)
         # 向上滑到页面
@@ -72,7 +71,6 @@ class TransferIn(BaseFunction):
         self.click_element(Tlocation.stock_in)
         # 点击调拨入库
         self.click_element(Tlocation.transfer_in)
-        time.sleep(10)
         # 点击高级搜索
         self.click_element(Tlocation.order_search)
         # 输入调拨单号
@@ -87,7 +85,6 @@ class TransferIn(BaseFunction):
         ex = 0.5
         ey = 0.80
         swipe_up(self, page_size, sx, sy, ex, ey)
-        time.sleep(5)
         self.click_element(Tlocation.transfer_options_submit)
 
         # 点击查询
