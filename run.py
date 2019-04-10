@@ -8,7 +8,7 @@ from HTMLTestRunner import HTMLTestRunner
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     # 下单case
-    suite.addTest(info('shop_card'))
+    # suite.addTest(info('shop_card'))
     # 查询订单case
     # suite.addTest(info('select_order'))
     # 查询订单筛选

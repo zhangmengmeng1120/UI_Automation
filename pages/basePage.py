@@ -19,6 +19,8 @@ keycode = {
     '9': 16
 }
 # 登录页面相关的id
+# 网络连接失败的提示
+hint_text = (By.XPATH, "//android.widget.TextView[contains(@text,'网络连接失败,请检查网络连接')]")
 # 定位商户号输入框
 edit_business = (By.ID, 'com.nexttao.shopforce.test:id/edit_business')
 # 定位用户名输入框
@@ -35,6 +37,14 @@ menu_btn_layout = (By.ID, 'com.nexttao.shopforce.test:id/menu_btn_layout')
 logout = (By.XPATH, "//android.widget.TextView[contains(@text,'登出')]")
 # 确认登出
 text_confirm = (By.ID, 'com.nexttao.shopforce.test:id/text_confirm')
+# 设置面板
+settings = (By.XPATH, "//android.widget.TextView[contains(@text,'设置面板')]")
+# 数据更新
+update_data = (By.XPATH, "//android.widget.TextView[contains(@text,'数据更新')]")
+# 清空缓存
+system_cache_clear_tv = (By.ID, 'com.nexttao.shopforce.test:id/system_cache_clear_tv')
+# 产品包数据加载进度条
+system_cache_clear_tv = (By.ID, 'com.nexttao.shopforce.test:id/system_cache_clear_tv')
 
 
 # 商品排列组合
@@ -91,6 +101,10 @@ class Cartesian():
 
 
 def login(basefunction, business, username, password):
+    # 如果启动程序时网络连接失败的处理方式
+    ex =  basefunction.find_element(hint_text)
+    if ex:
+        raise Exception('网络连接失败,请检查网络连接')
     # 输入商户号
     basefunction.input_element(edit_business, business)
     # 输入用户名

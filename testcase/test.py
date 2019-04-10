@@ -15,14 +15,27 @@ class Sale(unittest.TestCase):
     def setUp(self):
         desired_caps = {
             'platformName': 'Android',
-            'platformVersion': '4.3',
+            'platformVersion': '7.1.1',
             'deviceName': '192.168.56.101:5555',
             'appPackage': 'com.nexttao.shopforce.test',
             'appActivity': 'com.nexttao.shopforce.fragment.SplashActivity',
+            'automationName': 'Uiautomator2',
             'unicodeKeyboard': 'True',
-            'resetKeyboard': 'True'
+            'resetKeyboard': 'True',
+            'noReset': 'True'
+            # 'chromeOptions': {'androidProcess': 'WEBVIEW_com.nexttao.shopforce.test'}
         }
         self.drive = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+        # desired_caps = {
+        #     'platformName': 'Android',
+        #     'platformVersion': '4.3',
+        #     'deviceName': '192.168.56.101:5555',
+        #     'appPackage': 'com.nexttao.shopforce.test',
+        #     'appActivity': 'com.nexttao.shopforce.fragment.SplashActivity',
+        #     'unicodeKeyboard': 'True',
+        #     'resetKeyboard': 'True'
+        # }
+        # self.drive = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 
     # 释放实例，释放资源
     def tearDown(self):
@@ -189,11 +202,42 @@ class Sale(unittest.TestCase):
         except:
             self.fail(u'程序运行异常')
 
+    def h5_test(self):
+        time.sleep(10)
+        username_info = self.drive.find_element_by_id('edit_username')
+        print username_info
+        username_info.clear()
+        username_info.send_keys('pl')
+        username_info.click()
+        self.drive.find_element_by_id('edit_password').send_keys('123')
+        self.drive.find_element_by_id('text_login').click()
+        # time.sleep(2)
+        # try:
+        #     self.drive.find_element_by_id('text_login').click()
+        #     time.sleep(5)
+        #     self.drive.find_element_by_id('shopcar_title')
+        #     print '登录成功'
+        # except:
+        #     self.fail(u'登录失败')
+        time.sleep(20)
+        self.drive.find_element_by_id('menu_btn_layout').click()
+        self.drive.find_element_by_xpath("//android.widget.TextView[contains(@text,'畅销排行')]").click()
+        time.sleep(5)
+        contexts = self.drive.contexts
+        print contexts
+        self.drive.switch_to.context(contexts[1])
+        time.sleep(4)
+        now = self.drive.current_context
+        print now
+
+
+
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
-    suite.addTest(Sale("sale_order_create"))
+    # suite.addTest(Sale("sale_order_create"))
     # suite.addTest(Login("login_password_error"))
+    suite.addTest(Sale("h5_test"))
     report_dir = '../test_report'
     now = time.strftime("%Y-%m-%d_%H-%M-%S")
     report_name = '{0}/{1}.html'.format(report_dir, now)

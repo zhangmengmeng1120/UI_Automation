@@ -3,7 +3,7 @@
 from base_appium_function.base_function import BaseFunction
 import shoppingCardLocation as sclocation
 import basePage
-from basePage import login
+from basePage import login,swipe_up,GetPageSize
 import time
 
 
@@ -74,3 +74,8 @@ class SalePage(BaseFunction):
             print '支付成功'
         except:
             raise Exception('支付出现异常')
+        self.click_element(basePage.menu_btn_layout)
+        page_size = GetPageSize(self)
+        swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+        self.click_element(basePage.logout)
+        self.click_element(basePage.text_confirm)

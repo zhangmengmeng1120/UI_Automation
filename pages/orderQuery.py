@@ -4,7 +4,7 @@ from base_appium_function.base_function import BaseFunction
 import orderQueryLocation as oqLocation
 import basePage
 import time
-from basePage import login, GetPageSize, swipe_up, swipe_down
+from basePage import login, GetPageSize, swipe_up
 
 
 class QuerySaleOrder(BaseFunction):
@@ -40,7 +40,7 @@ class QuerySaleOrder(BaseFunction):
         downe_x = 0.1
         downe_y = 0.62
         # 下拉刷新
-        swipe_down(self, GetPageSize(self), downs_x, downs_y, downe_x, downe_y)
+        swipe_up(self, GetPageSize(self), downs_x, downs_y, downe_x, downe_y)
         time.sleep(10)
         s_x = 0.1
         s_y = 0.75
@@ -68,7 +68,7 @@ class QuerySaleOrder(BaseFunction):
         downs_y = 0.2
         downe_x = 0.1
         downe_y = 0.62
-        swipe_down(self, GetPageSize(self), downs_x, downs_y, downe_x, downe_y)
+        swipe_up(self, GetPageSize(self), downs_x, downs_y, downe_x, downe_y)
         self.click_element(basePage.menu_btn_layout)
         sx = 0.1
         sy = 0.75
@@ -108,4 +108,13 @@ class QuerySaleOrder(BaseFunction):
                 print '订单筛选正常'
             else:
                 raise Exception('订单筛选异常')
-        time.sleep(5)
+        self.click_element(basePage.menu_btn_layout)
+        sx = 0.1
+        sy = 0.75
+        ex = 0.1
+        ey = 0.25
+        swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
+        self.click_element(basePage.logout)
+        self.click_element(basePage.text_confirm)
+
+

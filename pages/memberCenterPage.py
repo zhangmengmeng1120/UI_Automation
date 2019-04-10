@@ -3,7 +3,7 @@
 from base_appium_function.base_function import BaseFunction
 import memberCenterLocation as mcLocation
 import basePage
-from basePage import login
+from basePage import login,GetPageSize,swipe_up
 import time
 import random
 import sys
@@ -72,7 +72,14 @@ class MemberCenter(BaseFunction):
         else:
             raise Exception('会员标签添加失败')
         self.click_element(mcLocation.member_back)
-        time.sleep(2)
+        self.click_element(basePage.menu_btn_layout)
+        sx = 0.1
+        sy = 0.25
+        ex = 0.1
+        ey = 0.75
+        swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
+        self.click_element(basePage.logout)
+        self.click_element(basePage.text_confirm)
 
     def member_register(self, business, username, password, tag):
         '''
@@ -128,3 +135,11 @@ class MemberCenter(BaseFunction):
             print '跳转到购物车页面成功带上会员'
         except:
             raise Exception('异常')
+        self.click_element(basePage.menu_btn_layout)
+        sx = 0.1
+        sy = 0.25
+        ex = 0.1
+        ey = 0.75
+        swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
+        self.click_element(basePage.logout)
+        self.click_element(basePage.text_confirm)

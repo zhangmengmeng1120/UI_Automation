@@ -18,7 +18,7 @@ import random
 class info(unittest.TestCase):
     def setUp(self):
         self.driver = init_driver()
-        self.business = 'crm_test'
+        self.business = 'promotion_test'
         self.username = 'pl'
         self.password = '123'
         self.product_code = '1821012'
@@ -67,7 +67,7 @@ class info(unittest.TestCase):
 
     def bestsell(self):
         test_info =BestSelling(self.driver)
-        test_info.best_info(self.business, self.username, self.password)
+        test_info.best_info(self.business, self.username, self.password,self.product_code)
     # 释放实例，释放资源
     def tearDown(self):
         self.driver.quit()
