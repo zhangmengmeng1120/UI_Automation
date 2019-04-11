@@ -2,7 +2,10 @@
 # encoding:utf-8
 import time
 from selenium.webdriver.support.wait import WebDriverWait
-
+from appium.webdriver.switch_to import MobileCommand
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 class BaseFunction(object):
     def __init__(self, driver):
@@ -23,3 +26,16 @@ class BaseFunction(object):
         self.inp = self.find_element(loc)
         self.inp.clear()
         self.inp.send_keys(text)
+
+    # Native APP 与H5的切换
+    def switch_h5(self, context_name):
+        """
+        Sets the context for the current session.
+
+        :Args:
+         - context_name: The name of the context to switch to.
+
+        :Usage:
+            driver.switch_to.context('WEBVIEW_1')
+        """
+        self.driver.execute(MobileCommand.SWITCH_TO_CONTEXT, {'name': context_name})

@@ -18,8 +18,7 @@ clear = (By.CLASS_NAME, 'del')
 # 随机获取排行前8的商品
 favourite_product = (By.XPATH, "//article/a[1]")
 # 返回
-back_btn = (By.XPATH, "//head[@class='head-title']/a[1]")
+back_btn = (By.XPATH, "//img[@src='assets/imgs/backs.png']")
 # 同城库存
 inventory = (By.XPATH, "//div[@class='tab']/a[2]")
-# 更新产品或促销进度条
-update_text_info = (By.ID, 'com.nexttao.shopforce.test:id/update_text_info')
+

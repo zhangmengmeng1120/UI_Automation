@@ -43,8 +43,8 @@ settings = (By.XPATH, "//android.widget.TextView[contains(@text,'设置面板')]
 update_data = (By.XPATH, "//android.widget.TextView[contains(@text,'数据更新')]")
 # 清空缓存
 system_cache_clear_tv = (By.ID, 'com.nexttao.shopforce.test:id/system_cache_clear_tv')
-# 产品包数据加载进度条
-system_cache_clear_tv = (By.ID, 'com.nexttao.shopforce.test:id/system_cache_clear_tv')
+# 更新产品或促销进度条
+update_text_info = (By.ID, 'com.nexttao.shopforce.test:id/update_text_info')
 
 
 # 商品排列组合

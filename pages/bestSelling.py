@@ -20,40 +20,41 @@ class BestSelling(BaseFunction):
         login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity",10)
         while True:
-            update_info = self.find_element(bsl.update_text_info)
+            update_info = self.find_element(basePage.update_text_info)
             print update_info
             time.sleep(2)
             if update_info==False: break
 
-        # try:
-        self.click_element(basePage.menu_btn_layout)
-        self.click_element(bsl.module_item_name)
-        time.sleep(5)
-        contexts = self.driver.contexts
-        self.switch_h5(contexts[1])
-        time.sleep(4)
-        self.click_element(bsl.search_product_btn)
-        self.input_element(bsl.input_product,product_code)
-        self.click_element(bsl.search)
-        time.sleep(2)
-        self.click_element(bsl.clear)
-        self.click_element(bsl.cancel)
-        self.click_element(bsl.favourite_product)
-        time.sleep(5)
-        print self.driver.page_source
-        self.click_element(bsl.inventory)
-        time.sleep(2)
-        self.click_element(bsl.back_btn)
-        contexts = self.driver.contexts
-        self.switch_h5(contexts[0])
-        time.sleep(5)
-        self.click_element(basePage.menu_btn_layout)
-        page_size = GetPageSize(self)
-        swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
-        self.click_element(basePage.logout)
-        self.click_element(basePage.text_confirm)
-        # except:
-        #     raise Exception('畅销排行操作出现异常')
+        try:
+            self.click_element(basePage.menu_btn_layout)
+            self.click_element(bsl.module_item_name)
+            time.sleep(5)
+            contexts = self.driver.contexts
+            self.switch_h5(contexts[1])
+            time.sleep(4)
+            self.click_element(bsl.search_product_btn)
+            self.input_element(bsl.input_product,product_code)
+            self.click_element(bsl.search)
+            time.sleep(2)
+            self.click_element(bsl.clear)
+            self.click_element(bsl.cancel)
+            el = self.find_element(bsl.favourite_product)
+            if el:
+                self.click_element(bsl.favourite_product)
+                time.sleep(5)
+                self.click_element(bsl.inventory)
+                time.sleep(2)
+                self.click_element(bsl.back_btn)
+            contexts = self.driver.contexts
+            self.switch_h5(contexts[0])
+            time.sleep(5)
+            self.click_element(basePage.menu_btn_layout)
+            page_size = GetPageSize(self)
+            swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+            self.click_element(basePage.logout)
+            self.click_element(basePage.text_confirm)
+        except:
+            raise Exception('畅销排行操作出现异常')
 
 
 
