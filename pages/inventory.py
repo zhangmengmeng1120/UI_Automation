@@ -1,11 +1,9 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-from selenium.webdriver.common.by import By
+from page_location import inventoryLocation as inLocation
 import basePage
 from basePage import login
-import time
-import random
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')

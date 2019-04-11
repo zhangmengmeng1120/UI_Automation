@@ -3,7 +3,7 @@
 from base_appium_function.base_function import BaseFunction
 import basePage
 from basePage import login, GetPageSize, swipe_up
-import TransferInLoaction as Tlocation
+from page_location import  reloadLocation as reLocation
 import time
 import sys
 

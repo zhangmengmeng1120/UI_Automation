@@ -8,8 +8,8 @@ sys.setdefaultencoding('utf-8')
 import time
 from  pages.shoppingCard import SalePage
 from pages.orderQuery import QuerySaleOrder
-from pages.memberCenterPage import MemberCenter
-from pages.TransferIn import TransferIn
+from pages.memberCenter import MemberCenter
+from pages.transferIn import TransferIn
 from pages.bestSelling import BestSelling
 from base_appium_function.init_driver import init_driver
 import random
@@ -18,7 +18,7 @@ import random
 class info(unittest.TestCase):
     def setUp(self):
         self.driver = init_driver()
-        self.business = 'promotion_test'
+        self.business = 'crm_test'
         self.username = 'pl'
         self.password = '123'
         self.product_code = '1821012'

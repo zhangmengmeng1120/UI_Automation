@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-import orderQueryLocation as oqLocation
+from page_location import orderQueryLocation as oqLocation
 import basePage
 import time
 from basePage import login, GetPageSize, swipe_up

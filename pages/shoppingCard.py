@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-import shoppingCardLocation as sclocation
+from page_location import shoppingCardLocation as scLocation
 import basePage
 from basePage import login,swipe_up,GetPageSize
 import time
@@ -20,57 +20,57 @@ class SalePage(BaseFunction):
         # 输入商品编码
         for i in product_code:
             self.driver.press_keycode(basePage.keycode[i])
-        self.click_element(sclocation.keypad_search_btn)
-        self.click_element(sclocation.product_sizes[0])
-        self.click_element(sclocation.product_colors[0])
-        self.click_element(sclocation.confirm_txt)
+        self.click_element(scLocation.keypad_search_btn)
+        self.click_element(scLocation.product_sizes[0])
+        self.click_element(scLocation.product_colors[0])
+        self.click_element(scLocation.confirm_txt)
         # 清空购物车
-        self.click_element(sclocation.shopcar_clear_btn)
+        self.click_element(scLocation.shopcar_clear_btn)
         # 确认清空操作
-        self.click_element(sclocation.text_confirm)
+        self.click_element(scLocation.text_confirm)
         # 商品的颜色和尺码生成唯一的组合
-        datagroup = [sclocation.product_colors, sclocation.product_sizes]
+        datagroup = [scLocation.product_colors, scLocation.product_sizes]
         cartesian = basePage.Cartesian(datagroup)
         attrlist = cartesian.assemble()
         for info in attrlist:
             # 输入商品编码
             for i in product_code:
                 self.driver.press_keycode(basePage.keycode[i])
-            self.click_element(sclocation.keypad_search_btn)
+            self.click_element(scLocation.keypad_search_btn)
             color_info = info[0]
             size_info = info[1]
             self.click_element(size_info)
             self.click_element(color_info)
-            self.click_element(sclocation.confirm_txt)
+            self.click_element(scLocation.confirm_txt)
         # 输入会员手机号码
         for num in telphone:
             self.driver.press_keycode(basePage.keycode[num])
-        self.click_element(sclocation.keypad_search_btn)
+        self.click_element(scLocation.keypad_search_btn)
         # 选择销售员
-        self.click_element(sclocation.saleman_text)
-        self.click_element(sclocation.tv_sale_name)
-        self.click_element(sclocation.tv_confirm)
+        self.click_element(scLocation.saleman_text)
+        self.click_element(scLocation.tv_sale_name)
+        self.click_element(scLocation.tv_confirm)
         # 点击下一步
-        self.click_element(sclocation.settle_btn)
+        self.click_element(scLocation.settle_btn)
         # 确认提示信息
-        if self.find_element(sclocation.text_confirm):
-            self.click_element(sclocation.text_confirm)
+        if self.find_element(scLocation.text_confirm):
+            self.click_element(scLocation.text_confirm)
         try:
             # 检查是否进入选择促销的页面
-            self.find_element(sclocation.member_promotion_name)
+            self.find_element(scLocation.member_promotion_name)
             # 点击去支付
-            self.click_element(sclocation.settle_btn)
+            self.click_element(scLocation.settle_btn)
         except:
             raise Exception('上传销售订单出现异常')
         # 选择现金支付
-        self.click_element(sclocation.pay_cash)
+        self.click_element(scLocation.pay_cash)
         # 确认支付
-        self.click_element(sclocation.confirm_pay)
+        self.click_element(scLocation.confirm_pay)
         try:
             # 检查是否支付成功
-            self.find_element(sclocation.img_gou)
+            self.find_element(scLocation.img_gou)
             # 开始新订单
-            self.click_element(sclocation.text_restart)
+            self.click_element(scLocation.text_restart)
             print '支付成功'
         except:
             raise Exception('支付出现异常')

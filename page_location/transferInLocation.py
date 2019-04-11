@@ -17,7 +17,6 @@ details_text = (By.ID, 'com.nexttao.shopforce.test:id/details_text')
 transfer_confirm_state = (By.ID, "com.nexttao.shopforce.test:id/state")
 # 调拨单确认签收按钮
 transfer_confirm_button = (By.ID, "com.nexttao.shopforce.test:id/take_receive")
-# transfer_confirm_button = (By.XPATH, "//android.widget.TextView[contains(@text,'确认签收')]")
 
 # 差异签收弹出框
 transfer_diff_wizard = (By.ID, "com.nexttao.shopforce.test:id/multiple_dialog_container")
@@ -70,3 +69,15 @@ start_at = (By.ID, 'com.nexttao.shopforce.test:id/start_at')
 end_at = (By.ID, 'com.nexttao.shopforce.test:id/end_at')
 # 高级搜索，选择日
 day = (By.ID, 'com.nexttao.shopforce.test:id/day')
+
+# H5定位
+# 只看差异
+btn_view_diff = (By.CLASS_NAME, 'btn-view-diff')
+# 搜索button
+searchCon = (By.ID, 'searchCon')
+# 搜索条件
+input_item = (By.CLASS_NAME, 'input-item')
+# 清空搜索内容
+icon_delete = (By.CLASS_NAME, 'icon-delete')
+#
+
