@@ -18,7 +18,7 @@ class BestSelling(BaseFunction):
 
     def best_info(self, business, username, password,product_code):
         login(self, business, username, password)
-        time.sleep(40)
+        self.driver.wait_activity(".bash.ui.MainActivity",10)
         while True:
             update_info = self.find_element(bsl.update_text_info)
             print update_info
@@ -27,37 +27,26 @@ class BestSelling(BaseFunction):
 
         # try:
         self.click_element(basePage.menu_btn_layout)
-        # page_size = GetPageSize(self)
-        # swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
-        # self.click_element(basePage.settings)
-        # self.click_element(basePage.update_data)
-        # self.click_element(basePage.system_cache_clear_tv)
-        # self.click_element(basePage.text_confirm)
-        # self.click_element(basePage.menu_btn_layout)
-        # downs_x = 0.1
-        # downs_y = 0.25
-        # downe_x = 0.1
-        # downe_y = 0.62
-        # # 下拉刷新
-        # swipe_up(self, GetPageSize(self), downs_x, downs_y, downe_x, downe_y)
         self.click_element(bsl.module_item_name)
-        self.click_element(bsl.favourite_product)
-        self.driver.find_element_by_accessibility_id('同城库存').click()
+        time.sleep(5)
+        contexts = self.driver.contexts
+        self.switch_h5(contexts[1])
+        time.sleep(4)
+        self.click_element(bsl.search_product_btn)
+        self.input_element(bsl.input_product,product_code)
+        self.click_element(bsl.search)
         time.sleep(2)
-        # 向上滑动页面
-        page_size = GetPageSize(self)
-        print page_size
-        sx = 0.1
-        sy = 0.75
-        ex = 0.1
-        ey = 0.25
-        swipe_up(self,page_size,sx,sy,ex,ey)
+        self.click_element(bsl.clear)
+        self.click_element(bsl.cancel)
+        self.click_element(bsl.favourite_product)
+        time.sleep(5)
+        print self.driver.page_source
+        self.click_element(bsl.inventory)
+        time.sleep(2)
         self.click_element(bsl.back_btn)
-        # self.click_element(bsl.search_product_btn)
-        self.driver.tap([(1900,100)])
-        self.input_element(bsl.search_edit_text,product_code)
-        self.driver.find_element_by_accessibility_id("搜索").click()
-        self.click_element(bsl.searcg_product)
+        contexts = self.driver.contexts
+        self.switch_h5(contexts[0])
+        time.sleep(5)
         self.click_element(basePage.menu_btn_layout)
         page_size = GetPageSize(self)
         swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)

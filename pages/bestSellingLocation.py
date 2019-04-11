@@ -6,21 +6,20 @@ import random
 # 畅销排行button
 module_item_name = (By.XPATH, "//android.widget.TextView[contains(@text,'畅销排行')]")
 # 搜索button
-search_product_btn = (By.ID, 'com.nexttao.shopforce.test:id/search_product_btn')
+search_product_btn = (By.CLASS_NAME, 'search_icon')
+# 输入商品编码
+input_product = (By.NAME, 'product_sku')
+# 点击搜索
+search = (By.CLASS_NAME, 'search')
+# 取消搜索
+cancel = (By.CLASS_NAME, 'cancel')
+# 清空搜索消息
+clear = (By.CLASS_NAME, 'del')
 # 随机获取排行前8的商品
-num = random.randint(1, 8)
-favourite_product = (By.XPATH,
-                     "//android.widget.RelativeLayout[1]/android.view.View[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[2]/android.view.View[%s]" % num)
-back_btn = (By.XPATH,
-            "//android.widget.RelativeLayout[1]/android.view.View[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]")
-# 搜索框
-search_edit_text = (By.XPATH,
-                    "//android.webkit.WebView[@content-desc=\"畅销排行\"]/android.view.View[1]/android.view.View[1]/android.widget.EditText")
-# 商品详情
-pronduct_detail = (By.XPATH,
-                   "//android.view.View[@content-desc=\"商品详情\"]")
-# 搜索结果
-searcg_product = (By.XPATH,
-                  "//android.webkit.WebView[1]/android.webkit.WebView[1]/android.view.View[2]/android.view.View[1]")
+favourite_product = (By.XPATH, "//article/a[1]")
+# 返回
+back_btn = (By.XPATH, "//head[@class='head-title']/a[1]")
+# 同城库存
+inventory = (By.XPATH, "//div[@class='tab']/a[2]")
 # 更新产品或促销进度条
 update_text_info = (By.ID, 'com.nexttao.shopforce.test:id/update_text_info')
