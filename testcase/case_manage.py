@@ -6,11 +6,13 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import time
-from  pages.shoppingCard import SalePage
+from pages.shoppingCard import SalePage
 from pages.orderQuery import QuerySaleOrder
 from pages.memberCenter import MemberCenter
 from pages.transferIn import TransferIn
 from pages.bestSelling import BestSelling
+from pages.report import Report
+
 from base_appium_function.init_driver import init_driver
 import random
 
@@ -66,8 +68,21 @@ class info(unittest.TestCase):
         test_info.transfer_confirm(self.business, self.username, self.password)
 
     def bestsell(self):
-        test_info =BestSelling(self.driver)
-        test_info.best_info(self.business, self.username, self.password,self.product_code)
+        test_info = BestSelling(self.driver)
+        test_info.best_info(self.business, self.username, self.password, self.product_code)
+
+    def shop_inventory(self):
+        test_info = Report(self.driver)
+        test_info.shop_inventory(self.business, self.username, self.password)
+
+    def shop_inventory_diff(self):
+        test_info = Report(self.driver)
+        test_info.shop_inventory_diff(self.business, self.username, self.password)
+
+    def basic_report_act(self):
+        test_info = Report(self.driver)
+        test_info.basic_report_act(self.business, self.username, self.password)
+
     # 释放实例，释放资源
     def tearDown(self):
         self.driver.quit()
