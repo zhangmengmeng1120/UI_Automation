@@ -13,6 +13,7 @@ from pages.transferIn import TransferIn
 from pages.bestSelling import BestSelling
 from pages.report import Report
 
+from pages.transferOut import TransferOut
 from base_appium_function.init_driver import init_driver
 import random
 
@@ -83,6 +84,10 @@ class info(unittest.TestCase):
         test_info = Report(self.driver)
         test_info.basic_report_act(self.business, self.username, self.password)
 
+
+    def transferout_create(self):
+        test_info =TransferOut(self.driver)
+        test_info.transfer_out_create(self.business, self.username, self.password)
     # 释放实例，释放资源
     def tearDown(self):
         self.driver.quit()

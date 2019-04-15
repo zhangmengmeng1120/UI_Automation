@@ -45,6 +45,8 @@ update_data = (By.XPATH, "//android.widget.TextView[contains(@text,'数据更新
 system_cache_clear_tv = (By.ID, 'com.nexttao.shopforce.test:id/system_cache_clear_tv')
 # 更新产品或促销进度条
 update_text_info = (By.ID, 'com.nexttao.shopforce.test:id/update_text_info')
+# 商品搜索
+keypad_search_btn = (By.ID, 'com.nexttao.shopforce.test:id/keypad_search_btn')
 
 
 # 商品排列组合

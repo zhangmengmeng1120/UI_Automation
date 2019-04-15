@@ -20,7 +20,7 @@ class SalePage(BaseFunction):
         # 输入商品编码
         for i in product_code:
             self.driver.press_keycode(basePage.keycode[i])
-        self.click_element(scLocation.keypad_search_btn)
+        self.click_element(basePage.keypad_search_btn)
         self.click_element(scLocation.product_sizes[0])
         self.click_element(scLocation.product_colors[0])
         self.click_element(scLocation.confirm_txt)

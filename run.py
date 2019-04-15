@@ -24,7 +24,9 @@ if __name__ == '__main__':
     # 畅销排行
     # suite.addTest(info('bestsell'))
     # 查询报表
-    suite.addTest(info('basic_report_act'))
+    # suite.addTest(info('basic_report_act'))
+    # 创建调拨出库单
+    suite.addTest(info('transferout_create'))
     report_dir = './test_report'
     now = time.strftime("%Y-%m-%d_%H-%M-%S")
     report_name = '{0}/{1}.html'.format(report_dir, now)

@@ -17,7 +17,7 @@ class TransferIn(BaseFunction):
 
     def transfer_confirm(self, business, username, password):
         '''
-        签收待签收的单据，高级搜索
+        签收待签收的单据
         :param business:
         :param username:
         :param password:
@@ -30,36 +30,50 @@ class TransferIn(BaseFunction):
             print update_info
             time.sleep(2)
             if update_info == False: break
-        # 点击菜单
+        try:
+            # 点击菜单
+            self.click_element(basePage.menu_btn_layout)
+            # 向上滑到页面
+            page_size = GetPageSize(self)
+            sx = 0.1
+            sy = 0.75
+            ex = 0.1
+            ey = 0.25
+            swipe_up(self, page_size, sx, sy, ex, ey)
+
+            # 点击门店入库
+            self.click_element(tranLocation.stock_in)
+            # 点击调拨入库
+            self.click_element(tranLocation.transfer_in)
+            time.sleep(5)
+            self.click_element(tranLocation.details_text)
+            contexts = self.driver.contexts
+            self.switch_h5(contexts[1])
+            time.sleep(4)
+            self.click_element(tranLocation.icon_edit)
+            self.click_element(tranLocation.icon_delete)
+            self.click_element(tranLocation.num_key)
+            self.click_element(tranLocation.key_confirm)
+            self.click_element(tranLocation.btn_save)
+            self.click_element(tranLocation.back_btn)
+            time.sleep(4)
+            contexts = self.driver.contexts
+            self.switch_h5(contexts[0])
+            time.sleep(2)
+            self.click_element(tranLocation.take_receive)
+            el = self.find_element(tranLocation.transfer_diff_wizard)
+            if el:
+                self.click_element(tranLocation.diff_confirm_button)
+                time.sleep(3)
+            self.click_element(tranLocation.text_confirm_button)
+            time.sleep(1)
+        except:
+            raise Exception('签收调拨单出现异常')
         self.click_element(basePage.menu_btn_layout)
-        # 向上滑到页面
         page_size = GetPageSize(self)
-        sx = 0.1
-        sy = 0.75
-        ex = 0.1
-        ey = 0.25
-        swipe_up(self, page_size, sx, sy, ex, ey)
-
-        # 点击门店入库
-        self.click_element(tranLocation.stock_in)
-        # 点击调拨入库
-        self.click_element(tranLocation.transfer_in)
-        time.sleep(5)
-        self.click_element(tranLocation.details_text)
-        contexts = self.driver.contexts
-        time.sleep(4)
-        self.switch_h5(contexts[1])
-        print self.driver.page_source
-        # self.click_element(tranLocation.transfer_confirm_button)
-        # time.sleep(3)
-        # el = self.find_element(tranLocation.transfer_diff_wizard)
-        # if el:
-        #     self.click_element(tranLocation.diff_confirm_button)
-        #     time.sleep(3)
-        # self.click_element(tranLocation.text_confirm_button)
-
-    def transfer_filtrate(self):
-        return True
+        swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+        self.click_element(basePage.logout)
+        self.click_element(basePage.text_confirm)
 
     def transfer_by_orderno(self, business, username, password, transferin_order, sku):
         '''
@@ -96,17 +110,8 @@ class TransferIn(BaseFunction):
         ey = 0.80
         swipe_up(self, page_size, sx, sy, ex, ey)
         self.click_element(tranLocation.transfer_options_submit)
-
         # 点击查询
         self.click_element(tranLocation.search_query)
-        # el = self.find_element(tranLocation.order_state)
-        # if el:
-        #     if transferin_order in self.find_element(
-        #             tranLocation.allocate_name).text:
-        #         print '验证成功'
-        # else:
-        #     raise Exception('查找元素Tlocation.order_state的结果为%s' % el)
-
         self.click_element(basePage.menu_btn_layout)
 
         swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)

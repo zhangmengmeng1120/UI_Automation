@@ -11,12 +11,9 @@ transfer_in = (By.XPATH, "//android.widget.TextView[contains(@text,'调拨入库
 take_receive = (By.ID, 'com.nexttao.shopforce.test:id/take_receive')
 # 查看详情
 details_text = (By.ID, 'com.nexttao.shopforce.test:id/details_text')
-# 填写收货数量，这是h5页面
 
 # 调拨单代签收状态
 transfer_confirm_state = (By.ID, "com.nexttao.shopforce.test:id/state")
-# 调拨单确认签收按钮
-transfer_confirm_button = (By.ID, "com.nexttao.shopforce.test:id/take_receive")
 
 # 差异签收弹出框
 transfer_diff_wizard = (By.ID, "com.nexttao.shopforce.test:id/multiple_dialog_container")
@@ -74,10 +71,32 @@ day = (By.ID, 'com.nexttao.shopforce.test:id/day')
 # 只看差异
 btn_view_diff = (By.CLASS_NAME, 'btn-view-diff')
 # 搜索button
-searchCon = (By.ID, 'searchCon')
+searchIcon = (By.ID, 'searchIcon')
 # 搜索条件
 input_item = (By.CLASS_NAME, 'input-item')
 # 清空搜索内容
-icon_delete = (By.CLASS_NAME, 'icon-delete')
-#
-
+icon_delete = (By.XPATH, "//div[@class='keyboard']/div[1]/img[@class='icon-delete']")
+# 返回
+back_btn = (By.XPATH, "//div[@class='icon-back']/img[@alt='<']")
+# 保存
+btn_save = (By.CLASS_NAME, 'btn-save')
+# 手工添加
+add_handle = (By.XPATH, "//div[@class='before-focus']/div[1]")
+# 扫码添加
+add_border_node = (By.XPATH, "//div[@class='before-focus']/div[2]")
+# 导入采集
+loggingimport = (By.XPATH, "//div[@class='before-focus']/div[3]")
+# 更多
+btn_more = (By.CLASS_NAME, 'btn-more')
+# 清空列表
+btn_close_native = (By.CLASS_NAME, 'btn-close-native')
+# 点击修改收货数量
+icon_edit = (By.XPATH, "//table[@class='el-table__body']/tbody[1]/tr[1]/td[3]/div[1]/div[1]/div[2]")
+# 填写收货数量
+div_num = random.randint(1,9)
+num_key = (By.XPATH, "//div[@class='keyboard']/div[2]/div[%s]"%div_num)
+num_keys = (By.XPATH, "//div[@class='keyboard']/div[2]")
+# 确认修改收货数量
+key_confirm = (By.XPATH, "//div[@class='keyboard']/div[2]/div[12]")
+# 订单内容
+result_item = (By.CLASS_NAME, 'result-item')
