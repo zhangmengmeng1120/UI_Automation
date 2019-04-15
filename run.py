@@ -26,7 +26,25 @@ if __name__ == '__main__':
     # 查询报表
     # suite.addTest(info('basic_report_act'))
     # 创建调拨出库单
-    suite.addTest(info('transferout_create'))
+    # suite.addTest(info('transferout_create'))
+    # 提交调拨出库单
+    # suite.addTest(info('transferout_upload'))
+    # 调拨出库单高级搜索
+    # suite.addTest(info('transferout_search'))
+    # 配货退货单创建
+    # suite.addTest(info('refundCreate'))
+    # # 配货退货单出库即发货
+    # suite.addTest(info('refundUpload'))
+    # 配货退货单高级搜索
+    # suite.addTest(info('refund_search'))
+    # 库存损益单创建
+    # suite.addTest(info('scrapCreate'))
+    # # 库存损益单提交损益
+    # suite.addTest(info('scrapUpload'))
+    # 库存损益单高级搜索
+    # suite.addTest(info('scrap_search'))
+    # 配货收货单签收
+    suite.addTest(info('delivery_receive'))
     report_dir = './test_report'
     now = time.strftime("%Y-%m-%d_%H-%M-%S")
     report_name = '{0}/{1}.html'.format(report_dir, now)

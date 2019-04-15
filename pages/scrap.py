@@ -4,14 +4,14 @@ from base_appium_function.base_function import BaseFunction
 from basePage import login, swipe_up, GetPageSize
 import basePage
 import time
-from page_location import transferOutLocation as tranLocation
+from page_location import scrapLocation as sLocation
 
-class TransferOut(BaseFunction):
+class Scrap(BaseFunction):
     def __init__(self, driver):
         BaseFunction.__init__(self, driver)
 
-    # 调拨出库单创建
-    def transfer_out_create(self,business,username,password,product_codes):
+    # 损益单创建
+    def scrap_create(self,business,username,password,product_codes):
         login(self,business,username,password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
@@ -28,43 +28,39 @@ class TransferOut(BaseFunction):
             ex = 0.1
             ey = 0.25
             swipe_up(self, page_size, sx, sy, ex, ey)
-
-            # 点击门店出库
-            self.click_element(tranLocation.stock_out)
-            # 点击调拨出库
-            self.click_element(tranLocation.transfer_out)
+            # 点击库存损益
+            self.click_element(sLocation.scrap)
             time.sleep(5)
-            self.click_element(tranLocation.allocate_add)
-            self.click_element(tranLocation.shop_edit)
-            self.click_element(tranLocation.change_shop)
-            self.click_element(tranLocation.type_edit)
-            self.click_element(tranLocation.change_stock)
-            self.click_element(tranLocation.et_allocate_reason)
-            self.click_element(tranLocation.change_reason)
-            self.click_element(tranLocation.allocate_next)
+            self.click_element(sLocation.stock_loss_add)
+            self.click_element(sLocation.product_type_edit)
+            self.click_element(sLocation.change_product)
+            self.click_element(sLocation.stock_type_edit)
+            self.click_element(sLocation.change_reason)
+            self.input_element(sLocation.resean_edit,'123')
+            self.click_element(sLocation.stock_loss_next)
             time.sleep(6)
             contexts = self.driver.contexts
             self.switch_h5(contexts[1])
             time.sleep(4)
-            self.click_element(tranLocation.add_handle)
+            self.click_element(sLocation.add_handle)
             time.sleep(4)
             for code in product_codes:
                 contexts = self.driver.contexts
                 self.switch_h5(contexts[0])
                 time.sleep(7)
-                self.click_element(tranLocation.search_product)
+                self.click_element(sLocation.search_product)
                 for num in code:
                     self.driver.press_keycode(basePage.keycode[num])
                 self.click_element(basePage.keypad_search_btn)
                 contexts = self.driver.contexts
                 self.switch_h5(contexts[1])
                 time.sleep(4)
-                self.click_element(tranLocation.product_colors)
-                self.click_element(tranLocation.product_size)
-                self.click_element(tranLocation.add)
-            self.click_element(tranLocation.back_btn)
-            self.click_element(tranLocation.confirm)
-            self.click_element(tranLocation.back_btn)
+                self.click_element(sLocation.product_colors)
+                self.click_element(sLocation.product_size)
+                self.click_element(sLocation.add)
+            self.click_element(sLocation.back_btn)
+            self.click_element(sLocation.confirm)
+            self.click_element(sLocation.back_btn)
             contexts = self.driver.contexts
             self.switch_h5(contexts[0])
             time.sleep(6)
@@ -74,10 +70,10 @@ class TransferOut(BaseFunction):
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except Exception as e:
-            raise Exception('创建调拨单时出现异常:%s'%e)
+            raise Exception('创建损益单时出现异常:%s'%e)
 
     # 提交出库
-    def transfer_out_upload(self,business,username,password,product_codes):
+    def scrap_upload(self,business,username,password,product_codes):
         login(self,business,username,password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
@@ -95,60 +91,52 @@ class TransferOut(BaseFunction):
             ey = 0.25
             swipe_up(self, page_size, sx, sy, ex, ey)
 
-            # 点击门店出库
-            self.click_element(tranLocation.stock_out)
-            # 点击调拨出库
-            self.click_element(tranLocation.transfer_out)
+            # 点击库存损益
+            self.click_element(sLocation.scrap)
             time.sleep(5)
-            self.click_element(tranLocation.title)
-            self.click_element(tranLocation.draft_order)
-            self.click_element(tranLocation.confirm_allocate_txt)
-            el = self.find_element(tranLocation.confirm_tip)
+            self.click_element(sLocation.title)
+            self.click_element(sLocation.draft_order)
+            self.click_element(sLocation.confirm_stock_loss_txt)
+            el = self.find_element(sLocation.confirm_tip)
             if el:
-                self.click_element(tranLocation.text_confirm)
-                self.click_element(tranLocation.details_text)
+                self.click_element(sLocation.text_confirm)
+                self.click_element(sLocation.details_text)
                 contexts = self.driver.contexts
                 self.switch_h5(contexts[1])
                 time.sleep(7)
-                self.click_element(tranLocation.add_handle)
+                self.click_element(sLocation.add_handle)
                 time.sleep(4)
                 for code in product_codes:
                     contexts = self.driver.contexts
                     self.switch_h5(contexts[0])
                     time.sleep(7)
-                    self.click_element(tranLocation.search_product)
+                    self.click_element(sLocation.search_product)
                     for num in code:
                         self.driver.press_keycode(basePage.keycode[num])
                     self.click_element(basePage.keypad_search_btn)
                     contexts = self.driver.contexts
                     self.switch_h5(contexts[1])
                     time.sleep(4)
-                    self.click_element(tranLocation.product_colors)
-                    self.click_element(tranLocation.product_size)
-                    self.click_element(tranLocation.add)
-                self.click_element(tranLocation.back_btn)
-                self.click_element(tranLocation.confirm)
-                self.click_element(tranLocation.back_btn)
+                    self.click_element(sLocation.product_colors)
+                    self.click_element(sLocation.product_size)
+                    self.click_element(sLocation.add)
+                self.click_element(sLocation.back_btn)
+                self.click_element(sLocation.confirm)
+                self.click_element(sLocation.back_btn)
                 time.sleep(1)
                 contexts = self.driver.contexts
                 self.switch_h5(contexts[0])
                 time.sleep(6)
-                self.click_element(tranLocation.confirm_allocate_txt)
-                self.click_element(tranLocation.allocate_next)
+                self.click_element(sLocation.confirm_stock_loss_txt)
                 time.sleep(1)
-                self.click_element(tranLocation.allocate_next)
-                time.sleep(2)
+                self.click_element(sLocation.text_confirm)
                 self.click_element(basePage.menu_btn_layout)
                 page_size = GetPageSize(self)
                 swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
                 self.click_element(basePage.logout)
                 self.click_element(basePage.text_confirm)
-
             else:
-                self.click_element(tranLocation.text_confirm)
-                self.click_element(tranLocation.allocate_next)
-                time.sleep(1)
-                self.click_element(tranLocation.allocate_next)
+                self.click_element(sLocation.text_confirm)
                 time.sleep(2)
                 self.click_element(basePage.menu_btn_layout)
                 page_size = GetPageSize(self)
@@ -156,10 +144,10 @@ class TransferOut(BaseFunction):
                 self.click_element(basePage.logout)
                 self.click_element(basePage.text_confirm)
         except Exception as e:
-            raise Exception('提交调拨出库出现异常%s'%e)
+            raise Exception('提交损益出现异常%s'%e)
 
 
-    def transferout_by_orderno(self, business, username, password, transferin_order, sku):
+    def scrap_by_orderno(self, business, username, password, transferin_order, sku):
         '''
         调拨入库单高级搜索,根据调拨单号进行模糊搜索
         :return:
@@ -181,31 +169,21 @@ class TransferOut(BaseFunction):
             ex = 0.1
             ey = 0.25
             swipe_up(self, page_size, sx, sy, ex, ey)
-            # 点击门店入库
-            self.click_element(tranLocation.stock_out)
-            # 点击调拨入库
-            self.click_element(tranLocation.transfer_out)
+            # 点击库存损益
+            self.click_element(sLocation.scrap)
             # 点击高级搜索
-            self.click_element(tranLocation.order_search)
-            # 输入调拨单号
-            self.input_element(tranLocation.search_order_no, transferin_order)
+            self.click_element(sLocation.order_search)
+            # 输入退货单号
+            self.input_element(sLocation.search_order_no, transferin_order)
             # 输入商品编码
-            self.input_element(tranLocation.search_order_sku, sku)
-            # 点击调拨类型
-            # self.click_element(tranLocation.type_edit)
-            page_size = GetPageSize(self)
-            sx = 0.5
-            sy = 0.75
-            ex = 0.5
-            ey = 0.80
-            swipe_up(self, page_size, sx, sy, ex, ey)
+            self.input_element(sLocation.search_order_sku, sku)
             # 点击查询
-            self.click_element(tranLocation.search_query)
-            time.sleep(2)
+            self.click_element(sLocation.search_query)
+            time.sleep(1)
             self.click_element(basePage.menu_btn_layout)
-
+            time.sleep(2)
             swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except Exception as e:
-            raise Exception('调拨出库单高级搜索出现异常:%s'%e)
+            raise Exception('损益单高级搜索出现异常:%s'%e)

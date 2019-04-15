@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 import random
 # 门店盘点button
 module_item_name = (By.XPATH, "//android.widget.TextView[contains(@text,'门店盘点')]")
+# 检查是否存在盘点中的单子
+inventory_details_cancel_btn = (By.ID, 'com.nexttao.shopforce.test:id/inventory_details_cancel_btn')
 # 创建盘点button
 stock_list_add_btn = (By.ID, 'com.nexttao.shopforce.test:id/stock_list_add_btn')
 # 提交button
@@ -11,7 +13,7 @@ new_inventory_submit_btn = (By.ID, 'com.nexttao.shopforce.test:id/new_inventory_
 # 添加货架
 add_rack = (By.XPATH, "//android.widget.TextView[contains(@text,'添加货架')]")
 # 输入货架名称
-input_text = (By.ID, 'com.nexttao.shopforce.test:id/input_text')
+rack_name = (By.ID, 'com.nexttao.shopforce.test:id/input_text')
 # 确认
 text_confirm = (By.ID, 'com.nexttao.shopforce.test:id/text_confirm')
 # 订单状态下拉

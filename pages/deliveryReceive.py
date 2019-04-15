@@ -3,7 +3,7 @@
 from base_appium_function.base_function import BaseFunction
 from basePage import login, swipe_up, GetPageSize
 import basePage
-from page_location import transferInLocation as tranLocation
+from page_location import deliveryReceiveLocation as deLocation
 import time
 import sys
 
@@ -11,11 +11,11 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-class TransferIn(BaseFunction):
+class DeliveryReceive(BaseFunction):
     def __init__(self, driver):
         BaseFunction.__init__(self, driver)
 
-    def transfer_confirm(self, business, username, password):
+    def delivery_confirm(self, business, username, password):
         '''
         签收待签收的单据
         :param business:
@@ -27,7 +27,6 @@ class TransferIn(BaseFunction):
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
-            print update_info
             time.sleep(2)
             if update_info == False: break
         try:
@@ -40,42 +39,42 @@ class TransferIn(BaseFunction):
             ex = 0.1
             ey = 0.25
             swipe_up(self, page_size, sx, sy, ex, ey)
-
             # 点击门店入库
-            self.click_element(tranLocation.stock_in)
-            # 点击调拨入库
-            self.click_element(tranLocation.transfer_in)
-            time.sleep(5)
-            self.click_element(tranLocation.details_text)
+            self.click_element(deLocation.stock_in)
+            # 点击配货收货
+            self.click_element(deLocation.delivery_receive)
+            time.sleep(2)
+            self.click_element(deLocation.details_text)
             contexts = self.driver.contexts
             self.switch_h5(contexts[1])
             time.sleep(4)
-            self.click_element(tranLocation.icon_edit)
-            self.click_element(tranLocation.icon_delete)
-            self.click_element(tranLocation.num_key)
-            self.click_element(tranLocation.key_confirm)
-            self.click_element(tranLocation.btn_save)
-            self.click_element(tranLocation.back_btn)
+            self.click_element(deLocation.icon_edit)
+            self.click_element(deLocation.icon_delete)
+            self.click_element(deLocation.num_key)
+            self.click_element(deLocation.key_confirm)
+            self.click_element(deLocation.btn_save)
+            self.click_element(deLocation.back_btn)
             time.sleep(4)
             contexts = self.driver.contexts
             self.switch_h5(contexts[0])
             time.sleep(2)
-            self.click_element(tranLocation.take_receive)
-            el = self.find_element(tranLocation.transfer_diff_wizard)
+            self.click_element(deLocation.take_receive)
+            el = self.find_element(deLocation.transfer_diff_wizard)
             if el:
-                self.click_element(tranLocation.diff_confirm_button)
+                self.click_element(deLocation.diff_confirm_button)
                 time.sleep(3)
-            self.click_element(tranLocation.text_confirm_button)
+            self.click_element(deLocation.text_confirm_button)
             time.sleep(1)
+            self.click_element(basePage.menu_btn_layout)
+            page_size = GetPageSize(self)
+            swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+            self.click_element(basePage.logout)
+            self.click_element(basePage.text_confirm)
         except:
-            raise Exception('签收调拨单出现异常')
-        self.click_element(basePage.menu_btn_layout)
-        page_size = GetPageSize(self)
-        swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
-        self.click_element(basePage.logout)
-        self.click_element(basePage.text_confirm)
+            raise Exception('签收配货收货单出现异常')
 
-    def transfer_by_orderno(self, business, username, password, transferin_order, sku):
+
+    def delivery_by_orderno(self, business, username, password, transferin_order, sku):
         '''
         调拨入库单高级搜索,根据调拨单号进行模糊搜索
         :return:
@@ -99,26 +98,26 @@ class TransferIn(BaseFunction):
             ey = 0.25
             swipe_up(self, page_size, sx, sy, ex, ey)
             # 点击门店入库
-            self.click_element(tranLocation.stock_in)
+            self.click_element(deLocation.stock_in)
             # 点击调拨入库
-            self.click_element(tranLocation.transfer_in)
+            self.click_element(deLocation.delivery_receive)
             # 点击高级搜索
-            self.click_element(tranLocation.order_search)
+            self.click_element(deLocation.order_search)
             # 输入调拨单号
-            self.input_element(tranLocation.search_order_no, transferin_order)
+            self.input_element(deLocation.search_order_no, transferin_order)
             # 输入商品编码
-            self.input_element(tranLocation.search_order_sku, sku)
+            self.input_element(deLocation.search_order_sku, sku)
             # 点击调拨类型
-            self.click_element(tranLocation.type_edit)
+            self.click_element(deLocation.type_edit)
             page_size = GetPageSize(self)
             sx = 0.5
             sy = 0.75
             ex = 0.5
             ey = 0.80
             swipe_up(self, page_size, sx, sy, ex, ey)
-            self.click_element(tranLocation.transfer_options_submit)
+            self.click_element(deLocation.transfer_options_submit)
             # 点击查询
-            self.click_element(tranLocation.search_query)
+            self.click_element(deLocation.search_query)
             self.click_element(basePage.menu_btn_layout)
 
             swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)

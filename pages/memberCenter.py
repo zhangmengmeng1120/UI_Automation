@@ -33,53 +33,57 @@ class MemberCenter(BaseFunction):
         '''
         搜索会员，会员画像，会员资料，历史订单，优惠券
         '''
-        old_tag = memLocation.old_tag % tag
-
         login(self, business, username, password)
-        time.sleep(5)
-        # 点击菜单
-        self.click_element(basePage.menu_btn_layout)
-        time.sleep(2)
-        # 进入会员中心
-        self.click_element(memLocation.menu_info)
-        time.sleep(2)
-        if self.find_element(memLocation.iterm):
-            self.click_element(memLocation.text_confirm)
-        # 输入会员手机号码
-        for num in telphone:
-            self.driver.press_keycode(basePage.keycode[num])
-        # 搜索会员
-        self.click_element(memLocation.search_product_btn)
-        time.sleep(5)
-        if self.find_element(memLocation.iterm):
-            self.click_element(memLocation.text_confirm)
-        self.click_element(memLocation.radio_history)
-        time.sleep(2)
-        self.click_element(memLocation.coupon_layout)
-        time.sleep(2)
-        if self.find_element(memLocation.iterm):
-            self.click_element(memLocation.text_confirm)
-        self.click_element(memLocation.radio_pic)
-        self.click_element(memLocation.addTagBtn)
-        self.input_element(memLocation.custom_targs, tag)
-        self.click_element(memLocation.add_targs_button)
-        time.sleep(2)
-        self.click_element(memLocation.confirm_button)
-        time.sleep(2)
-        # 验证标签是否添加成功
-        if self.find_element(memLocation.old_tag):
-            print '会员标签添加成功'
-        else:
-            raise Exception('会员标签添加失败')
-        self.click_element(memLocation.member_back)
-        self.click_element(basePage.menu_btn_layout)
-        sx = 0.1
-        sy = 0.25
-        ex = 0.1
-        ey = 0.75
-        swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
-        self.click_element(basePage.logout)
-        self.click_element(basePage.text_confirm)
+        while True:
+            update_info = self.find_element(basePage.update_text_info)
+            time.sleep(2)
+            if not update_info: break
+        try:
+            # 点击菜单
+            self.click_element(basePage.menu_btn_layout)
+            time.sleep(2)
+            # 进入会员中心
+            self.click_element(memLocation.menu_info)
+            time.sleep(2)
+            if self.find_element(memLocation.iterm):
+                self.click_element(memLocation.text_confirm)
+            # 输入会员手机号码
+            for num in telphone:
+                self.driver.press_keycode(basePage.keycode[num])
+            # 搜索会员
+            self.click_element(memLocation.search_product_btn)
+            time.sleep(5)
+            if self.find_element(memLocation.iterm):
+                self.click_element(memLocation.text_confirm)
+            self.click_element(memLocation.radio_history)
+            time.sleep(2)
+            self.click_element(memLocation.coupon_layout)
+            time.sleep(2)
+            if self.find_element(memLocation.iterm):
+                self.click_element(memLocation.text_confirm)
+            self.click_element(memLocation.radio_pic)
+            self.click_element(memLocation.addTagBtn)
+            self.input_element(memLocation.custom_targs, tag)
+            self.click_element(memLocation.add_targs_button)
+            time.sleep(2)
+            self.click_element(memLocation.confirm_button)
+            time.sleep(2)
+            # 验证标签是否添加成功
+            if self.find_element(memLocation.old_tag):
+                print '会员标签添加成功'
+            else:
+                raise Exception('会员标签添加失败')
+            self.click_element(memLocation.member_back)
+            self.click_element(basePage.menu_btn_layout)
+            sx = 0.1
+            sy = 0.25
+            ex = 0.1
+            ey = 0.75
+            swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
+            self.click_element(basePage.logout)
+            self.click_element(basePage.text_confirm)
+        except Exception as e:
+            raise Exception('会员中心出现异常%s'%e)
 
     def member_register(self, business, username, password, tag):
         '''
@@ -87,59 +91,65 @@ class MemberCenter(BaseFunction):
         '''
 
         login(self,business, username, password)
-        time.sleep(5)
-        # 点击菜单
-        self.click_element(basePage.menu_btn_layout)
-        time.sleep(2)
-        # 进入会员中心
-        self.click_element(memLocation.menu_info)
-        time.sleep(2)
-        if self.find_element(memLocation.iterm):
-            self.click_element(memLocation.text_confirm)
-        new_member = self.createPhone()
-        for new_num in new_member:
-            self.driver.press_keycode(basePage.keycode[new_num])
-        self.click_element(memLocation.add_member_txt)
-        time.sleep(2)
-        if self.find_element(memLocation.hint_text):
-            self.click_element(memLocation.text_confirm)
-        time.sleep(5)
-        new_name = self.memberName().decode('utf-8')
-        self.input_element(memLocation.register_name, new_name)
-        self.click_element(random.choice(memLocation.sex))
-        self.click_element(memLocation.register_save)
-        time.sleep(2)
-        self.tag_info = self.tag_info % new_member
-        if self.find_element(self.tag_info):
-            self.click_element(memLocation.text_confirm)
-        time.sleep(5)
-        if self.find_element(memLocation.iterm):
-            self.click_element(memLocation.text_confirm)
-        self.click_element(memLocation.radio_pic)
-        self.click_element(memLocation.addTagBtn)
-        self.input_element(memLocation.custom_targs, tag)
-        self.click_element(memLocation.add_targs_button)
-        time.sleep(2)
-        self.click_element(memLocation.confirm_button)
-        time.sleep(2)
-        # 验证标签是否添加成功
-        if self.find_element(memLocation.old_tag):
-            print '会员标签添加成功'
-        else:
-            raise Exception('会员标签添加失败')
-        time.sleep(2)
-        # 使用新注册的会员进行下单
-        self.click_element(memLocation.sale_btn)
+        while True:
+            update_info = self.find_element(basePage.update_text_info)
+            time.sleep(2)
+            if not update_info: break
         try:
-            self.find_element(memLocation.member_name.text == new_name)
-            print '跳转到购物车页面成功带上会员'
-        except:
-            raise Exception('异常')
-        self.click_element(basePage.menu_btn_layout)
-        sx = 0.1
-        sy = 0.25
-        ex = 0.1
-        ey = 0.75
-        swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
-        self.click_element(basePage.logout)
-        self.click_element(basePage.text_confirm)
+            # 点击菜单
+            self.click_element(basePage.menu_btn_layout)
+            time.sleep(2)
+            # 进入会员中心
+            self.click_element(memLocation.menu_info)
+            time.sleep(2)
+            if self.find_element(memLocation.iterm):
+                self.click_element(memLocation.text_confirm)
+            new_member = self.createPhone()
+            for new_num in new_member:
+                self.driver.press_keycode(basePage.keycode[new_num])
+            self.click_element(memLocation.add_member_txt)
+            time.sleep(2)
+            if self.find_element(memLocation.hint_text):
+                self.click_element(memLocation.text_confirm)
+            time.sleep(5)
+            new_name = self.memberName().decode('utf-8')
+            self.input_element(memLocation.register_name, new_name)
+            self.click_element(random.choice(memLocation.sex))
+            self.click_element(memLocation.register_save)
+            time.sleep(2)
+            self.tag_info = self.tag_info % new_member
+            if self.find_element(self.tag_info):
+                self.click_element(memLocation.text_confirm)
+            time.sleep(5)
+            if self.find_element(memLocation.iterm):
+                self.click_element(memLocation.text_confirm)
+            self.click_element(memLocation.radio_pic)
+            self.click_element(memLocation.addTagBtn)
+            self.input_element(memLocation.custom_targs, tag)
+            self.click_element(memLocation.add_targs_button)
+            time.sleep(2)
+            self.click_element(memLocation.confirm_button)
+            time.sleep(2)
+            # 验证标签是否添加成功
+            if self.find_element(memLocation.old_tag):
+                print '会员标签添加成功'
+            else:
+                raise Exception('会员标签添加失败')
+            time.sleep(2)
+            # 使用新注册的会员进行下单
+            self.click_element(memLocation.sale_btn)
+            try:
+                self.find_element(memLocation.member_name.text == new_name)
+                print '跳转到购物车页面成功带上会员'
+            except:
+                raise Exception('异常')
+            self.click_element(basePage.menu_btn_layout)
+            sx = 0.1
+            sy = 0.25
+            ex = 0.1
+            ey = 0.75
+            swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
+            self.click_element(basePage.logout)
+            self.click_element(basePage.text_confirm)
+        except Exception as e:
+            raise Exception('会员中心添加标签出现异常%s'%e)
