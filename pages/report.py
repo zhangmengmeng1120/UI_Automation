@@ -21,7 +21,7 @@ class Report(BaseFunction):
         while True:
             update_info = self.find_element(basePage.update_text_info)
             time.sleep(2)
-            if update_info == False: break
+            if not update_info: break
         try:
             self.click_element(basePage.menu_btn_layout)
             self.click_element(reLocation.module_item_name, timeout=4)

@@ -2,6 +2,7 @@
 # encoding:utf-8
 from selenium.webdriver.common.by import By
 from base_appium_function.base_function import BaseFunction
+import time
 
 '''
     keycode信息,key为实际要输入的数字，value表示key所对应的键盘值
@@ -104,7 +105,7 @@ class Cartesian():
 
 def login(basefunction, business, username, password):
     # 如果启动程序时网络连接失败的处理方式
-    ex =  basefunction.find_element(hint_text)
+    ex = basefunction.find_element(hint_text)
     if ex:
         raise Exception('网络连接失败,请检查网络连接')
     # 输入商户号
@@ -133,10 +134,32 @@ def GetPageSize(self):
 
 
 # 页面滑动
-def swipe_up(self, page_size,s_x,s_y,e_x,e_y):
+def swipe_up(self, page_size, s_x, s_y, e_x, e_y):
     sx = page_size[0] * s_x
     sy = page_size[1] * s_y
     ex = page_size[0] * e_x
     ey = page_size[1] * e_y
     self.driver.swipe(sx, sy, ex, ey, '500')
 
+
+def h5_swipe_up(self, s_x, s_y, e_x, e_y, time_out=2):
+    contexts = self.driver.contexts
+    self.switch_h5(contexts[0])
+    time.sleep(time_out)
+    page_size = GetPageSize(self)
+    swipe_up(self, page_size, s_x, s_y, e_x, e_y)
+    contexts = self.driver.contexts
+    self.driver.switch_to.context(contexts[1])
+    time.sleep(time_out)
+
+
+def location_click(self, locals, click_time=500, time_out=2):
+    contexts = self.driver.contexts
+    self.switch_h5(contexts[0])
+    time.sleep(time_out)
+    page_size = GetPageSize(self)
+    click_locals = [(page_size[0] * x, page_size[1] * y) for (x, y) in locals]
+    self.driver.tap(click_locals, click_time)
+    contexts = self.driver.contexts
+    self.driver.switch_to.context(contexts[1])
+    time.sleep(time_out)

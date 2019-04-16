@@ -2,6 +2,7 @@
 # encoding:utf-8
 import unittest
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import time
@@ -13,8 +14,10 @@ from pages.bestSelling import BestSelling
 from pages.report import Report
 from pages.transferOut import TransferOut
 from pages.refund import Refund
-from  pages.scrap import Scrap
-from  pages.deliveryReceive import DeliveryReceive
+from pages.scrap import Scrap
+from pages.deliveryReceive import DeliveryReceive
+from pages.dashboard import Dashboard
+
 from base_appium_function.init_driver import init_driver
 import random
 
@@ -35,8 +38,7 @@ class info(unittest.TestCase):
             chr(random.randint(65, 90)), chr(random.randint(97, 122)), chr(random.randint(97, 122)),
             chr(random.randint(65, 90)))
         self.transferin_order = '1'
-        self.product_codes = ['1821012','1721001']
-
+        self.product_codes = ['1821012', '1721001']
 
     def shop_card(self):
         test_info = SalePage(self.driver)
@@ -87,18 +89,18 @@ class info(unittest.TestCase):
         test_info = Report(self.driver)
         test_info.basic_report_act(self.business, self.username, self.password)
 
-
     def transferout_create(self):
-        test_info =TransferOut(self.driver)
-        test_info.transfer_out_create(self.business, self.username, self.password,self.product_codes)
+        test_info = TransferOut(self.driver)
+        test_info.transfer_out_create(self.business, self.username, self.password, self.product_codes)
 
     def transferout_upload(self):
-        test_info =TransferOut(self.driver)
-        test_info.transfer_out_upload(self.business, self.username, self.password,self.product_codes)
+        test_info = TransferOut(self.driver)
+        test_info.transfer_out_upload(self.business, self.username, self.password, self.product_codes)
 
     def transferout_search(self):
         test_info = TransferOut(self.driver)
-        test_info.transferout_by_orderno(self.business, self.username, self.password,self.transferin_order, self.product_code)
+        test_info.transferout_by_orderno(self.business, self.username, self.password, self.transferin_order,
+                                         self.product_code)
 
     def refundCreate(self):
         test_info = Refund(self.driver)
@@ -110,7 +112,8 @@ class info(unittest.TestCase):
 
     def refund_search(self):
         test_info = Refund(self.driver)
-        test_info.refund_by_orderno(self.business, self.username, self.password,self.transferin_order, self.product_code)
+        test_info.refund_by_orderno(self.business, self.username, self.password, self.transferin_order,
+                                    self.product_code)
 
     def scrapCreate(self):
         test_info = Scrap(self.driver)
@@ -122,11 +125,17 @@ class info(unittest.TestCase):
 
     def scrap_search(self):
         test_info = Scrap(self.driver)
-        test_info.scrap_by_orderno(self.business, self.username, self.password,self.transferin_order, self.product_code)
+        test_info.scrap_by_orderno(self.business, self.username, self.password, self.transferin_order,
+                                   self.product_code)
 
     def delivery_receive(self):
         test_info = DeliveryReceive(self.driver)
         test_info.delivery_confirm(self.business, self.username, self.password)
+
+    def basic_dashboard_act(self):
+        test_info = Dashboard(self.driver)
+        test_info.basic_dashboard_act(self.business, self.username, self.password)
+
     # 释放实例，释放资源
     def tearDown(self):
         self.driver.quit()

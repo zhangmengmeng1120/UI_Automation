@@ -44,7 +44,9 @@ if __name__ == '__main__':
     # 库存损益单高级搜索
     # suite.addTest(info('scrap_search'))
     # 配货收货单签收
-    suite.addTest(info('delivery_receive'))
+    # suite.addTest(info('delivery_receive'))
+    # 数据罗盘
+    suite.addTest(info('basic_dashboard_act'))
     report_dir = './test_report'
     now = time.strftime("%Y-%m-%d_%H-%M-%S")
     report_name = '{0}/{1}.html'.format(report_dir, now)
