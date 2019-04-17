@@ -2,72 +2,68 @@
 # encoding:utf-8
 from selenium.webdriver.common.by import By
 import random
+from pages import basePage
 
 # 门店入库button
 stock_in = (By.XPATH, "//android.widget.TextView[contains(@text,'门店入库')]")
 # 调拨入库button
 delivery_receive= (By.XPATH, "//android.widget.TextView[contains(@text,'配货收货')]")
 # 确认签收button
-take_receive = (By.ID, 'com.nexttao.shopforce.test:id/take_receive')
+take_receive = (By.ID, '%s:id/take_receive'%basePage.package_name)
 # 查看详情
-details_text = (By.ID, 'com.nexttao.shopforce.test:id/details_text')
-
+details_text = (By.ID, '%s:id/details_text'%basePage.package_name)
 # 调拨单代签收状态
-transfer_confirm_state = (By.ID, "com.nexttao.shopforce.test:id/state")
-
+transfer_confirm_state = (By.ID, "%s:id/state")
 # 差异签收弹出框
-transfer_diff_wizard = (By.ID, "com.nexttao.shopforce.test:id/multiple_dialog_container")
+transfer_diff_wizard = (By.ID, "%s:id/multiple_dialog_container")
 # 确认签收按钮
-text_confirm_button = (By.ID, "com.nexttao.shopforce.test:id/text_confirm")
+text_confirm_button = (By.ID, "%s:id/text_confirm")
 # 差异收货button
 diff_confirm_button = (By.XPATH, "//android.widget.TextView[contains(@text,'差异收货')]")
-
 # 订单状态
 state_num = random.randint(1, 4)
 order_of_state = (By.XPATH, "//android.widget.TextView[%s]" % state_num)
 # 订单状态下拉
-title = (By.ID, 'com.nexttao.shopforce.test:id/title')
+title = (By.ID, '%s:id/title'%basePage.package_name)
 # 展开订单详情
-fold_image = (By.ID, 'com.nexttao.shopforce.test:id/fold_image')
-
+fold_image = (By.ID, '%s:id/fold_image'%basePage.package_name)
 # 高级搜索button
-order_search = (By.ID, 'com.nexttao.shopforce.test:id/order_search')
+order_search = (By.ID, '%s:id/order_search'%basePage.package_name)
 # 查询
-search_query = (By.ID, 'com.nexttao.shopforce.test:id/search_query')
+search_query = (By.ID, '%s:id/search_query'%basePage.package_name)
 # 调拨单号输入框
-search_order_no = (By.ID, 'com.nexttao.shopforce.test:id/search_order_no')
+search_order_no = (By.ID, '%s:id/search_order_no'%basePage.package_name)
 # 商品编码输入框
-search_order_sku = (By.ID, 'com.nexttao.shopforce.test:id/search_order_sku')
+search_order_sku = (By.ID, '%s:id/search_order_sku'%basePage.package_name)
 # 发货店仓输入框
-search_order_org = (By.ID, 'com.nexttao.shopforce.test:id/search_order_org')
+search_order_org = (By.ID, '%s:id/search_order_org'%basePage.package_name)
 #  调拨类型
-type_edit = (By.ID, 'com.nexttao.shopforce.test:id/type_edit')
+type_edit = (By.ID, '%s:id/type_edit'%basePage.package_name)
 #  调拨类型option
-transfer_options1 = (By.ID, 'com.nexttao.shopforce.test:id/options1')
-transfer_options_submit = (By.ID, 'com.nexttao.shopforce.test:id/btnSubmit')
-
+transfer_options1 = (By.ID, '%s:id/options1'%basePage.package_name)
+transfer_options_submit = (By.ID, '%s:id/btnSubmit'%basePage.package_name)
 # 日期范围
-all_check = (By.ID, 'com.nexttao.shopforce.test:id/all_check')
-out_check = (By.ID, 'com.nexttao.shopforce.test:id/out_check')
-in_check = (By.ID, 'com.nexttao.shopforce.test:id/in_check')
+all_check = (By.ID, '%s:id/all_check'%basePage.package_name)
+out_check = (By.ID, '%s:id/out_check'%basePage.package_name)
+in_check = (By.ID, '%s:id/in_check'%basePage.package_name)
 # 操作人输入框
-operate_edit = (By.ID, 'com.nexttao.shopforce.test:id/operate_edit')
+operate_edit = (By.ID, '%s:id/operate_edit'%basePage.package_name)
 # 重置
-search_clear = (By.ID, 'com.nexttao.shopforce.test:id/search_clear')
+search_clear = (By.ID, '%s:id/search_clear'%basePage.package_name)
 # 取消
-search_up_cancel = (By.ID, 'com.nexttao.shopforce.test:id/search_up_cancel')
+search_up_cancel = (By.ID, '%s:id/search_up_cancel'%basePage.package_name)
 # 调拨单状态
 order_state = (By.XPATH, "//android.widget.TextView[contains(@text,'已完成')]")
 # 调拨单号
-allocate_name = (By.ID, 'com.nexttao.shopforce.test:id/allocate_name')
+allocate_name = (By.ID, '%s:id/allocate_name'%basePage.package_name)
 # 高级搜索，选择开始日期
-start_at = (By.ID, 'com.nexttao.shopforce.test:id/start_at')
+start_at = (By.ID, '%s:id/start_at'%basePage.package_name)
 # 高级搜索，选择结束日期
-end_at = (By.ID, 'com.nexttao.shopforce.test:id/end_at')
+end_at = (By.ID, '%s:id/end_at'%basePage.package_name)
 # 高级搜索，选择日
-day = (By.ID, 'com.nexttao.shopforce.test:id/day')
+day = (By.ID, '%s:id/day'%basePage.package_name)
 
-# H5定位
+##################### H5定位  ###################
 # 只看差异
 btn_view_diff = (By.CLASS_NAME, 'btn-view-diff')
 # 搜索button

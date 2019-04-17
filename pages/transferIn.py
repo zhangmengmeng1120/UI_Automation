@@ -6,7 +6,6 @@ import basePage
 from page_location import transferInLocation as tranLocation
 import time
 import sys
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 

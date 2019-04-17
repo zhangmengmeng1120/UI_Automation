@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # encoding:utf-8
 from selenium.webdriver.common.by import By
-from base_appium_function.base_function import BaseFunction
 import time
 
 '''
@@ -19,35 +18,38 @@ keycode = {
     '8': 15,
     '9': 16
 }
-# 登录页面相关的id
+# APP包名
+package_name = 'com.nexttao.shopforce.test'
+
+#################### 登录页面相关的元素##################
 # 网络连接失败的提示
 hint_text = (By.XPATH, "//android.widget.TextView[contains(@text,'网络连接失败,请检查网络连接')]")
 # 定位商户号输入框
-edit_business = (By.ID, 'com.nexttao.shopforce.test:id/edit_business')
+edit_business = (By.ID, '%s:id/edit_business'%package_name)
 # 定位用户名输入框
-edit_username = (By.ID, 'com.nexttao.shopforce.test:id/edit_username')
+edit_username = (By.ID, '%s:id/edit_username'%package_name)
 # 定位密码输入框
-edit_password = (By.ID, 'com.nexttao.shopforce.test:id/edit_password')
+edit_password = (By.ID, '%s:id/edit_password'%package_name)
 # 定位登录
-text_login = (By.ID, 'com.nexttao.shopforce.test:id/text_login')
+text_login = (By.ID, '%s:id/text_login'%package_name)
 # 验证是否登录成功,拿到购物车title
-shop_title = (By.ID, 'com.nexttao.shopforce.test:id/shopcar_title')
+shop_title = (By.ID, '%s:id/shopcar_title'%package_name)
 # 展开菜单button
-menu_btn_layout = (By.ID, 'com.nexttao.shopforce.test:id/menu_btn_layout')
+menu_btn_layout = (By.ID, '%s:id/menu_btn_layout'%package_name)
 # 登出
 logout = (By.XPATH, "//android.widget.TextView[contains(@text,'登出')]")
 # 确认登出
-text_confirm = (By.ID, 'com.nexttao.shopforce.test:id/text_confirm')
+text_confirm = (By.ID, '%s:id/text_confirm'%package_name)
 # 设置面板
 settings = (By.XPATH, "//android.widget.TextView[contains(@text,'设置面板')]")
 # 数据更新
 update_data = (By.XPATH, "//android.widget.TextView[contains(@text,'数据更新')]")
 # 清空缓存
-system_cache_clear_tv = (By.ID, 'com.nexttao.shopforce.test:id/system_cache_clear_tv')
+system_cache_clear_tv = (By.ID, '%s:id/system_cache_clear_tv'%package_name)
 # 更新产品或促销进度条
-update_text_info = (By.ID, 'com.nexttao.shopforce.test:id/update_text_info')
+update_text_info = (By.ID, '%s:id/update_text_info'%package_name)
 # 商品搜索
-keypad_search_btn = (By.ID, 'com.nexttao.shopforce.test:id/keypad_search_btn')
+keypad_search_btn = (By.ID, '%s:id/keypad_search_btn'%package_name)
 
 
 # 商品排列组合
