@@ -40,7 +40,7 @@ class Dashboard(BaseFunction):
             self.inventory_indicator()
         except Exception as e:
             print e
-            raise Exception('报表查询操作出现异常')
+            raise Exception('数据罗盘操作出现异常')
 
     def shop_sale(self):
         self.click_element(dbLocation.shop_sale_button, timeout=4)

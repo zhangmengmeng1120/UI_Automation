@@ -17,6 +17,8 @@ from pages.refund import Refund
 from pages.scrap import Scrap
 from pages.deliveryReceive import DeliveryReceive
 from pages.dashboard import Dashboard
+from pages.cloudOrder import CloudOrder
+from pages.reload import Reload
 
 from base_appium_function.init_driver import init_driver
 import random
@@ -135,6 +137,14 @@ class info(unittest.TestCase):
     def basic_dashboard_act(self):
         test_info = Dashboard(self.driver)
         test_info.basic_dashboard_act(self.business, self.username, self.password)
+
+    def basic_cloud_act(self):
+        test_info = CloudOrder(self.driver)
+        test_info.basic_cloud_act(self.business, self.username, self.password, self.product_code)
+
+    def basic_reload_act(self):
+        test_info = Reload(self.driver)
+        test_info.basic_reload_act(self.business, self.username, self.password, self.product_codes)
 
     # 释放实例，释放资源
     def tearDown(self):

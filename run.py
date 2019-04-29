@@ -17,14 +17,20 @@ if __name__ == '__main__':
     # suite.addTest(info('member_center'))
     # 会员中心--注册会员
     # suite.addTest(info('member_registers'))
-    # 调拨入库，高级搜索
-    # suite.addTest(info('transfer_search'))
-    # 调拨入库，调拨签收
-    # suite.addTest(info('transfer_confirm'))
+    # 数据罗盘
+    # suite.addTest(info('basic_dashboard_act'))
     # 畅销排行
     # suite.addTest(info('bestsell'))
     # 查询报表
     # suite.addTest(info('basic_report_act'))
+
+    # 调拨入库，高级搜索
+    # suite.addTest(info('transfer_search'))
+    # 调拨入库，调拨签收
+    # suite.addTest(info('transfer_confirm'))
+    # 配货收货单签收
+    # suite.addTest(info('delivery_receive'))
+
     # 创建调拨出库单
     # suite.addTest(info('transferout_create'))
     # 提交调拨出库单
@@ -37,16 +43,19 @@ if __name__ == '__main__':
     # suite.addTest(info('refundUpload'))
     # 配货退货单高级搜索
     # suite.addTest(info('refund_search'))
+
+    # 云仓订单
+    # suite.addTest(info('basic_cloud_act'))
+    # 补货单
+    suite.addTest(info('basic_reload_act'))
+
     # 库存损益单创建
     # suite.addTest(info('scrapCreate'))
-    # # 库存损益单提交损益
+    # 库存损益单提交损益
     # suite.addTest(info('scrapUpload'))
     # 库存损益单高级搜索
     # suite.addTest(info('scrap_search'))
-    # 配货收货单签收
-    # suite.addTest(info('delivery_receive'))
-    # 数据罗盘
-    suite.addTest(info('basic_dashboard_act'))
+
     report_dir = './test_report'
     now = time.strftime("%Y-%m-%d_%H-%M-%S")
     report_name = '{0}/{1}.html'.format(report_dir, now)
