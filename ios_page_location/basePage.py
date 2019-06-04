@@ -23,6 +23,13 @@ keyboard_search = (By.XPATH,'//XCUIElementTypeButton[@name="搜索"])[1]')
 update_confirm = '确定'
 # 升级提示，取消
 update_cancel = '取消'
+# 键盘模拟回车操作
+done = 'Done'
+# 各单据是否有明细
+table_len = (By.XPATH, '//XCUIElementTypeTable[2]/XCUIElementTypeCell[1]')
+# 查看明细
+details_text = '查看详情'
+
 
 # ===================>>>>>>>通用元素<<<<<<<<===============================
 # 菜单
@@ -33,13 +40,43 @@ dashboard_item_name = '数据罗盘'
 report_item_name = '查询报表'
 # 畅销排行
 best_selling = '畅销排行'
+# 门店入库
+stock_in = '门店入库'
+# 调拨入库
+transfer_in = '调拨入库'
+# 配货收货
+delivery_receive = '配货收货'
+# 门店出库
+stock_out = '门店出库'
+# 调拨出库
+transfer_out = '调拨出库'
+# 配货退货
+refund = '配货退货'
+# 云仓订单
+cloud_order_item = '云仓订单'
+# 我的云单
+self_cloud_item = '我的云单'
+# 我要发货
+cloud_out_item = '我要发货'
+# 补货订单
+shop_reload_item = '补货订单'
+# 补货申请
+shop_reload_apply_item = '补货申请'
+# 补货审批
+shop_reload_approve_item = '补货审批'
+# 库存损益
+shop_scrap = '库存损溢'
+# 登出
+login_out = '登出'
 
 # ===================>>>>>>>高级搜索<<<<<<<<===============================
 
-# 高级搜索
+# 高级搜索,未点亮
 search_advanced = '高级筛选－未点亮'
+# 高级搜索，点亮
+search_advanced_light = '高级筛选－点亮'
 # 单据、小票
-receipts = {'sale_order':(By.XPATH,'//XCUIElementTypeTextField[@value="请输入销售订单号"]'),'tran_order':(By.XPATH,'//XCUIElementTypeTextField[@value="请输入销售订单号"]')}
+receipts = {'sale_order':(By.XPATH,'//XCUIElementTypeTextField[@value="请输入销售订单号"]'),'tran_order':(By.XPATH,'//XCUIElementTypeTextField[@value="请输入销售订单号"]'),'inventory':(By.XPATH,'//XCUIElementTypeTextField[@value="请输入单号"]'),'transfer_in':(By.XPATH,'//XCUIElementTypeTextField[@value="请输入调拨入库单号"]'),'transfer_out':(By.XPATH,'//XCUIElementTypeTextField[@value="请输入调拨出库单号"]')}
 # sku
 sku = (By.XPATH,'//XCUIElementTypeTextField[@value="请输入SKU"]')
 # 日期范围
@@ -69,9 +106,8 @@ reset = '重置'
 # ===================>>>>>>>登录<<<<<<<<===============================
 
 def login(basefunction, business, text_username, text_password):
-    time.sleep(3)
+    time.sleep(2)
     basefunction.click_acc(update_cancel)
-    time.sleep(1)
     # 输入商户号
     # basefunction.input_element(merchantID, business)
     # # 输入用户名
@@ -82,6 +118,7 @@ def login(basefunction, business, text_username, text_password):
     basefunction.click_acc(disappear_keyboard)
     # 登录
     basefunction.click_acc(login_button)
+    time.sleep(6)
 
 # ===================>>>>>>>随机生成手机号<<<<<<<<===============================
 
@@ -160,7 +197,6 @@ def get_rack_name():
 def search_advanced_receipts(basefunction,business_no,receipts_type):
     basefunction.click_acc(search_advanced)
     time.sleep(2)
-    print basefunction.driver.page_source
     basefunction.click_element(receipts[receipts_type])
     basefunction.input_element(receipts[receipts_type], business_no)
     basefunction.click_acc(disappear_keyboard)
@@ -172,7 +208,6 @@ def search_advanced_receipts(basefunction,business_no,receipts_type):
 def search_advanced_sku(basefunction,sku_info):
     basefunction.click_acc(search_advanced)
     time.sleep(2)
-    print basefunction.driver.page_source
     basefunction.click_element(sku)
     basefunction.input_element(sku, sku_info)
     basefunction.click_acc(disappear_keyboard)

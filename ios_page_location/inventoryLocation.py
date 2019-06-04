@@ -45,3 +45,8 @@ stock_type = '可售'
 rack_confirm = '确定'
 # 取消
 rack_cancel= '取消'
+
+# ===================>>>>>>>盘点明细<<<<<<<<===============================
+
+# 点击商品的sku进入商品明细变动
+detail_sku = (By.XPATH, '//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText')

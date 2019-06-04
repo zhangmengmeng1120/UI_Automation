@@ -16,13 +16,10 @@ class Dashboard(BaseFunction):
 
     def basic_dashboard_act(self, business, username, password):
         basePage.login(self, business, username, password)
-        time.sleep(6)
         try:
 
             self.click_acc(basePage.menu)
-            time.sleep(1)
             self.click_acc(basePage.dashboard_item_name)
-            time.sleep(2)
             contexts = self.driver.contexts
             self.switch_h5(contexts[1])
             time.sleep(4)

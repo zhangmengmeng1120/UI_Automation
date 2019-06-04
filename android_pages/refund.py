@@ -10,7 +10,7 @@ class Refund(BaseFunction):
     def __init__(self, driver):
         BaseFunction.__init__(self, driver)
 
-    # 调拨出库单创建
+    # 配货退货单创建
     def refund_create(self,business,username,password,product_codes):
         login(self,business,username,password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)

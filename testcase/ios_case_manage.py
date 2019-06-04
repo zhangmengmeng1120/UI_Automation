@@ -8,16 +8,16 @@ import time
 from android_pages.shoppingCard import SalePage
 from ios_pages.orderQuery import QuerySaleOrder
 from ios_pages.memberCenter import MemberCenter
-from android_pages.transferIn import TransferIn
+from ios_pages.transferIn import TransferIn
 from ios_pages.bestSelling import BestSelling
 from ios_pages.report import Report
-from android_pages.transferOut import TransferOut
-from android_pages.refund import Refund
-from android_pages.scrap import Scrap
-from android_pages.deliveryReceive import DeliveryReceive
+from ios_pages.transferOut import TransferOut
+from ios_pages.refund import Refund
+from ios_pages.scrap import Scrap
+from ios_pages.deliveryReceive import DeliveryReceive
 from ios_pages.dashboard import Dashboard
-from android_pages.cloudOrder import CloudOrder
-from android_pages.reload import Reload
+from ios_pages.cloudOrder import CloudOrder
+from ios_pages.reload import Reload
 from ios_pages.inventory import StockInventory
 
 from base_appium_function.ios_init_driver import init_driver
@@ -66,22 +66,22 @@ class info(unittest.TestCase):
     def member_registers(self):
         test_info = MemberCenter(self.driver)
         test_info.member_register(self.business, self.username, self.password)
-    #
     def member_center(self):
         test_info = MemberCenter(self.driver)
         test_info.member_query(self.business, self.username, self.password, self.telphone)
-    #
-    # # 调拨入库高级搜索
-    # def transfer_search(self):
-    #     test_info = TransferIn(self.driver)
-    #     test_info.transfer_by_orderno(self.business, self.username, self.password, self.transferin_order,
-    #                                   self.product_code)
-    #
-    # # 调拨入库确认签收
-    # def transfer_confirm(self):
-    #     test_info = TransferIn(self.driver)
-    #     test_info.transfer_confirm(self.business, self.username, self.password)
-    #
+
+    # ===================>>>>>>>调拨入库case<<<<<<<<===============================
+
+    # 调拨入库高级搜索
+    def transfer_search(self):
+        test_info = TransferIn(self.driver)
+        test_info.transfer_by_orderno(self.business, self.username, self.password, self.transferin_order)
+
+    # 调拨入库确认签收
+    def transfer_confirm(self):
+        test_info = TransferIn(self.driver)
+        test_info.transfer_confirm(self.business, self.username, self.password,self.product_codes)
+
 
     # ===================>>>>>>>畅销排行case<<<<<<<<===============================
     def bestsell(self):
@@ -103,62 +103,77 @@ class info(unittest.TestCase):
         test_info = Report(self.driver)
         test_info.basic_report_act(self.business, self.username, self.password)
 
-    # ===================>>>>>>>调拨case<<<<<<<<===============================
+    # ===================>>>>>>>调拨出库case<<<<<<<<===============================
     #
-    # def transferout_create(self):
-    #     test_info = TransferOut(self.driver)
-    #     test_info.transfer_out_create(self.business, self.username, self.password, self.product_codes)
+    def transferout_create(self):
+        test_info = TransferOut(self.driver)
+        test_info.transfer_out_create(self.business, self.username, self.password, self.product_codes)
     #
-    # def transferout_upload(self):
-    #     test_info = TransferOut(self.driver)
-    #     test_info.transfer_out_upload(self.business, self.username, self.password, self.product_codes)
+    def transferout_upload(self):
+        test_info = TransferOut(self.driver)
+        test_info.transfer_out_upload(self.business, self.username, self.password, self.product_codes)
     #
-    # def transferout_search(self):
-    #     test_info = TransferOut(self.driver)
-    #     test_info.transferout_by_orderno(self.business, self.username, self.password, self.transferin_order,
-    #                                      self.product_code)
-    #
-    # def refundCreate(self):
-    #     test_info = Refund(self.driver)
-    #     test_info.refund_create(self.business, self.username, self.password, self.product_codes)
-    #
-    # def refundUpload(self):
-    #     test_info = Refund(self.driver)
-    #     test_info.refund_upload(self.business, self.username, self.password, self.product_codes)
-    #
-    # def refund_search(self):
-    #     test_info = Refund(self.driver)
-    #     test_info.refund_by_orderno(self.business, self.username, self.password, self.transferin_order,
-    #                                 self.product_code)
-    #
-    # def scrapCreate(self):
-    #     test_info = Scrap(self.driver)
-    #     test_info.scrap_create(self.business, self.username, self.password, self.product_codes)
-    #
-    # def scrapUpload(self):
-    #     test_info = Scrap(self.driver)
-    #     test_info.scrap_upload(self.business, self.username, self.password, self.product_codes)
-    #
-    # def scrap_search(self):
-    #     test_info = Scrap(self.driver)
-    #     test_info.scrap_by_orderno(self.business, self.username, self.password, self.transferin_order,
-    #                                self.product_code)
-    #
-    # def delivery_receive(self):
-    #     test_info = DeliveryReceive(self.driver)
-    #     test_info.delivery_confirm(self.business, self.username, self.password)
-    #
+    def transferout_search(self):
+        test_info = TransferOut(self.driver)
+        test_info.transferout_by_orderno(self.business, self.username, self.password)
+
+    # ===================>>>>>>>配货退货case<<<<<<<<===============================
+
+    def refundCreate(self):
+        test_info = Refund(self.driver)
+        test_info.refund_create(self.business, self.username, self.password, self.product_codes)
+
+    def refundUpload(self):
+        test_info = Refund(self.driver)
+        test_info.refund_upload(self.business, self.username, self.password, self.product_codes)
+
+    def refund_search(self):
+        test_info = Refund(self.driver)
+        test_info.refund_by_orderno(self.business, self.username, self.password)
+
+    # ===================>>>>>>>损益单case<<<<<<<<===============================
+    def scrapCreate(self):
+        test_info = Scrap(self.driver)
+        test_info.scrap_create(self.business, self.username, self.password, self.product_codes)
+
+    def scrapUpload(self):
+        test_info = Scrap(self.driver)
+        test_info.scrap_upload(self.business, self.username, self.password, self.product_codes)
+
+    def scrap_search(self):
+        test_info = Scrap(self.driver)
+        test_info.scrap_by_orderno(self.business, self.username, self.password)
+
+    # ===================>>>>>>>配货收货case<<<<<<<<===============================
+    # 签收
+    def delivery_receive(self):
+        test_info = DeliveryReceive(self.driver)
+        test_info.delivery_confirm(self.business, self.username, self.password)
+
+    # 高级搜索
+    def delivery_receive_advanced(self):
+        test_info = DeliveryReceive(self.driver)
+        test_info.delivery_by_orderno(self.business, self.username, self.password)
+
+    # ===================>>>>>>>dashboard case<<<<<<<<===============================
     def basic_dashboard_act(self):
         test_info = Dashboard(self.driver)
         test_info.basic_dashboard_act(self.business, self.username, self.password)
-    #
-    # def basic_cloud_act(self):
-    #     test_info = CloudOrder(self.driver)
-    #     test_info.basic_cloud_act(self.business, self.username, self.password, self.product_code)
-    #
-    # def basic_reload_act(self):
-    #     test_info = Reload(self.driver)
-    #     test_info.basic_reload_act(self.business, self.username, self.password, self.product_codes)
+
+    # ===================>>>>>>>云仓订单case<<<<<<<<===============================
+
+    def basic_cloud_act(self):
+        test_info = CloudOrder(self.driver)
+        test_info.basic_cloud_act(self.business, self.username, self.password, self.product_code)
+
+    # ===================>>>>>>>补货单case<<<<<<<<===============================
+    def apply_reload_act(self):
+        test_info = Reload(self.driver)
+        test_info.apply_reload(self.business, self.username, self.password, self.product_codes)
+
+    def approve_reload_act(self):
+        test_info = Reload(self.driver)
+        test_info.approve_reload(self.business, self.username, self.password)
 
     # ===================>>>>>>>盘点case<<<<<<<<===============================
     def inventory_stock_create(self):
@@ -168,6 +183,10 @@ class info(unittest.TestCase):
     def inventory_stock_query(self):
         test_info = StockInventory(self.driver)
         test_info.inventory_query(self.business, self.username, self.password)
+
+    def inventory_detail_diff(self):
+        test_info = StockInventory(self.driver)
+        test_info.inventory_read_diff(self.business, self.username, self.password,self.product_code)
 
     # 释放实例，释放资源
     def tearDown(self):

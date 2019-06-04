@@ -15,10 +15,8 @@ class Report(BaseFunction):
 
     def basic_report_act(self, business, username, password):
         basePage.login(self, business, username, password)
-        time.sleep(6)
         try:
             self.click_acc(basePage.menu)
-            time.sleep(2)
             self.click_acc(basePage.report_item_name)
             time.sleep(2)
             contexts = self.driver.contexts

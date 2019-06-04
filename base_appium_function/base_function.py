@@ -12,14 +12,14 @@ class BaseFunction(object):
     def __init__(self, driver):
         self.driver = driver
 
-    def find_element(self, loc, timeout=20):
+    def find_element(self, loc, timeout=10):
         try:
             WebDriverWait(self.driver, timeout).until(lambda driver: driver.find_element(*loc).is_displayed())
             return WebDriverWait(self.driver, timeout).until(lambda x: x.find_element(*loc))
             # WebDriverWait(self.driver, 10).until(ec.visibility_of_element_located(loc))
             # return self.driver.find_element(*loc)
         except:
-            return '没有在页面中找到%s'%loc
+            return False
 
     def find_elements(self, loc):
         '''封装一组元素定位方法'''
@@ -67,6 +67,7 @@ class BaseFunction(object):
 
     def click_acc(self,accessibility_id):
         self.find_element_by_accessibility_id(accessibility_id).click()
+        time.sleep(1)
 
     def input_by_acc(self,accessibility_id,text):
         self.inp = self.find_element_by_accessibility_id(accessibility_id)

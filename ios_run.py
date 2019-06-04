@@ -35,7 +35,7 @@ if __name__ == '__main__':
     # suite.addTest(info('basic_dashboard_act'))
 
     # 畅销排行
-    suite.addTest(info('bestsell'))
+    # suite.addTest(info('bestsell'))
 
     # 查询报表
     # suite.addTest(info('basic_report_act'))
@@ -51,6 +51,8 @@ if __name__ == '__main__':
 
     # 配货收货单签收
     # suite.addTest(info('delivery_receive'))
+    # 配货收货单高级搜索
+    # suite.addTest(info('delivery_receive_advanced'))
 
     # ===================>>>>>>>调拨出库<<<<<<<<===============================
 
@@ -77,15 +79,17 @@ if __name__ == '__main__':
 
     # ===================>>>>>>>补货单<<<<<<<<===============================
 
-    # 补货单
-    # suite.addTest(info('basic_reload_act'))
+    # 补货申请单
+    # suite.addTest(info('apply_reload_act'))
+    # 补货单审批
+    # suite.addTest(info('approve_reload_act'))
 
     # ===================>>>>>>>损益单<<<<<<<<===============================
 
     # 库存损益单创建
     # suite.addTest(info('scrapCreate'))
     # 库存损益单提交损益
-    # suite.addTest(info('scrapUpload'))
+    suite.addTest(info('scrapUpload'))
     # 库存损益单高级搜索
     # suite.addTest(info('scrap_search'))
 
@@ -95,6 +99,8 @@ if __name__ == '__main__':
     # suite.addTest(info('inventory_stock_create'))
     # 盘点单高级搜索
     # suite.addTest(info('inventory_stock_query'))
+    # 查看盘点明细差异
+    # suite.addTest(info('inventory_detail_diff'))
 
     report_dir = './test_report'
     now = time.strftime("%Y-%m-%d_%H-%M-%S")

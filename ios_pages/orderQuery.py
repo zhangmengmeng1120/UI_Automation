@@ -24,13 +24,11 @@ class QuerySaleOrder(BaseFunction):
         try:
             # 登录
             login(self, merchantID, username, password)
-            time.sleep(8)
             receipts_type = 'sale_order'
             # 点击菜单
             self.click_acc(basePage.menu)
             self.click_acc(oqLocation.order_query_button)
             basePage.search_advanced_receipts(self,order_no,receipts_type)
-            time.sleep(1)
         except Exception as e:
             raise Exception('订单查询出现异常%s'%e)
 
@@ -39,27 +37,20 @@ class QuerySaleOrder(BaseFunction):
     def search_order_by_sku(self, merchantID, username, password, sku_info):
 
         login(self, merchantID, username, password)
-        time.sleep(8)
         # 点击菜单
         self.click_acc(basePage.menu)
         self.click_acc(oqLocation.order_query_button)
         basePage.search_advanced_sku(self,sku_info)
-        time.sleep(2)
 
     # ===================>>>>>>>订单状态过滤<<<<<<<<===============================
 
     def filter_order_state(self, merchantID, username, password):
 
         login(self, merchantID, username, password)
-        time.sleep(8)
         # 点击菜单
         self.click_acc(basePage.menu)
         self.click_acc(oqLocation.order_query_button)
         self.click_acc(oqLocation.all_orders)
-        time.sleep(1)
         self.click_acc(oqLocation.order_normal)
-        time.sleep(1)
         self.click_acc(oqLocation.order_refund)
-        time.sleep(1)
         self.click_acc(oqLocation.order_exchange)
-        time.sleep(1)
