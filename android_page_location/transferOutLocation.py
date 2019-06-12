@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from selenium.webdriver.common.by import By
-from android_pages import basePage
+import basePage
 
 # 门店出库button
 stock_out = (By.XPATH, "//android.widget.TextView[contains(@text,'门店出库')]")

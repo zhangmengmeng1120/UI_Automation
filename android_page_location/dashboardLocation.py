@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # encoding:utf-8
 from selenium.webdriver.common.by import By
-import random
 
 # 数据罗盘button
 module_item_name = (By.XPATH, "//android.widget.TextView[contains(@text,'数据罗盘')]")

@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # encoding:utf-8
 from selenium.webdriver.common.by import By
-import random
-from android_pages import basePage
 
 # 云仓订单
 module_item_name = (By.XPATH, "//android.widget.TextView[contains(@text,'云仓订单')]")

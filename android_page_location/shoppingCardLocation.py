@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from selenium.webdriver.common.by import By
-from android_pages import basePage
+import basePage
 
 # 商品尺码
 product_sizes = [(By.XPATH, "//android.widget.TextView[contains(@text,'M')]"),

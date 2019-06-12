@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-from basePage import login, swipe_up, GetPageSize
-import basePage
+from android_page_location import basePage
 import time
 from android_page_location import refundLocation as reLocation
 

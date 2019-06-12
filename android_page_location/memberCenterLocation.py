@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from selenium.webdriver.common.by import By
-from android_pages import basePage
+import basePage
 
 
 # 会员中心button

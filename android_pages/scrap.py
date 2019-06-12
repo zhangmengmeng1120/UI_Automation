@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-from basePage import login, swipe_up, GetPageSize
-import basePage
+from android_page_location import basePage
 import time
 from android_page_location import scrapLocation as sLocation
 
@@ -12,7 +11,7 @@ class Scrap(BaseFunction):
 
     # 损益单创建
     def scrap_create(self,business,username,password,product_codes):
-        login(self,business,username,password)
+        basePage.login(self,business,username,password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -22,12 +21,12 @@ class Scrap(BaseFunction):
             # 点击菜单
             self.click_element(basePage.menu_btn_layout)
             # 向上滑到页面
-            page_size = GetPageSize(self)
+            page_size = basePage.GetPageSize(self)
             sx = 0.1
             sy = 0.75
             ex = 0.1
             ey = 0.25
-            swipe_up(self, page_size, sx, sy, ex, ey)
+            basePage.swipe_up(self, page_size, sx, sy, ex, ey)
             # 点击库存损益
             self.click_element(sLocation.scrap)
             time.sleep(5)
@@ -65,8 +64,8 @@ class Scrap(BaseFunction):
             self.switch_h5(contexts[0])
             time.sleep(6)
             self.click_element(basePage.menu_btn_layout)
-            page_size = GetPageSize(self)
-            swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+            page_size = basePage.GetPageSize(self)
+            basePage.swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except Exception as e:
@@ -74,7 +73,7 @@ class Scrap(BaseFunction):
 
     # 提交出库
     def scrap_upload(self,business,username,password,product_codes):
-        login(self,business,username,password)
+        basePage.login(self,business,username,password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -84,12 +83,12 @@ class Scrap(BaseFunction):
             # 点击菜单
             self.click_element(basePage.menu_btn_layout)
             # 向上滑到页面
-            page_size = GetPageSize(self)
+            page_size = basePage.GetPageSize(self)
             sx = 0.1
             sy = 0.75
             ex = 0.1
             ey = 0.25
-            swipe_up(self, page_size, sx, sy, ex, ey)
+            basePage.swipe_up(self, page_size, sx, sy, ex, ey)
 
             # 点击库存损益
             self.click_element(sLocation.scrap)
@@ -131,16 +130,16 @@ class Scrap(BaseFunction):
                 time.sleep(1)
                 self.click_element(sLocation.text_confirm)
                 self.click_element(basePage.menu_btn_layout)
-                page_size = GetPageSize(self)
-                swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+                page_size = basePage.GetPageSize(self)
+                basePage.swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
                 self.click_element(basePage.logout)
                 self.click_element(basePage.text_confirm)
             else:
                 self.click_element(sLocation.text_confirm)
                 time.sleep(2)
                 self.click_element(basePage.menu_btn_layout)
-                page_size = GetPageSize(self)
-                swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+                page_size = basePage.GetPageSize(self)
+                basePage.swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
                 self.click_element(basePage.logout)
                 self.click_element(basePage.text_confirm)
         except Exception as e:
@@ -153,7 +152,7 @@ class Scrap(BaseFunction):
         :return:
         '''
         # 登录
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -163,12 +162,12 @@ class Scrap(BaseFunction):
             # 点击菜单
             self.click_element(basePage.menu_btn_layout)
             # 向上滑到页面
-            page_size = GetPageSize(self)
+            page_size = basePage.GetPageSize(self)
             sx = 0.1
             sy = 0.75
             ex = 0.1
             ey = 0.25
-            swipe_up(self, page_size, sx, sy, ex, ey)
+            basePage.swipe_up(self, page_size, sx, sy, ex, ey)
             # 点击库存损益
             self.click_element(sLocation.scrap)
             # 点击高级搜索
@@ -182,7 +181,7 @@ class Scrap(BaseFunction):
             time.sleep(1)
             self.click_element(basePage.menu_btn_layout)
             time.sleep(2)
-            swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+            basePage.swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except Exception as e:

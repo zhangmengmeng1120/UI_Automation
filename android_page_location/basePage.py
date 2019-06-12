@@ -21,7 +21,8 @@ keycode = {
 # APP包名
 package_name = 'com.nexttao.shopforce.test'
 
-#################### 登录页面相关的元素##################
+# ===================>>>>>>>登录页面相关的元素<<<<<<<<===============================
+
 # 网络连接失败的提示
 hint_text = (By.XPATH, "//android.widget.TextView[contains(@text,'网络连接失败,请检查网络连接')]")
 # 定位商户号输入框
@@ -32,6 +33,10 @@ edit_username = (By.ID, '%s:id/edit_username'%package_name)
 edit_password = (By.ID, '%s:id/edit_password'%package_name)
 # 定位登录
 text_login = (By.ID, '%s:id/text_login'%package_name)
+
+
+# ===================>>>>>>>通用元素<<<<<<<<===============================
+
 # 验证是否登录成功,拿到购物车title
 shop_title = (By.ID, '%s:id/shopcar_title'%package_name)
 # 展开菜单button
@@ -52,7 +57,26 @@ update_text_info = (By.ID, '%s:id/update_text_info'%package_name)
 keypad_search_btn = (By.ID, '%s:id/keypad_search_btn'%package_name)
 
 
-# 商品排列组合
+# ===================>>>>>>>高级查询<<<<<<<<===============================
+
+# 高级搜索页面
+order_search = (By.ID, '%s:id/order_search'%package_name)
+# 请输入销售订单号
+search_order_no = (By.ID, '%s:id/search_order_no'%package_name)
+# 请输入商品编码
+search_order_sku = (By.ID, '%s:id/search_order_sku'%package_name)
+# 搜索
+search_query = (By.ID, '%s:id/search_query'%package_name)
+# 取消
+search_cancel = (By.ID, '%s:id/search_cancel'%package_name)
+# 重置
+search_clear = (By.ID, '%s:id/search_clear'%package_name)
+# 跨店退换货
+cross_shop_toggle = (By.ID, '%s:id/cross_shop_toggle'%package_name)
+
+
+
+# ===================>>>>>>>商品排列组合<<<<<<<<===============================
 # python 实现N个数组的排列组合(笛卡尔积算法)
 class Cartesian():
     # 初始化
@@ -105,37 +129,50 @@ class Cartesian():
         return ll
 
 
+# ===================>>>>>>>登录<<<<<<<<===============================
+
 def login(basefunction, business, username, password):
     # 如果启动程序时网络连接失败的处理方式
-    ex = basefunction.find_element(hint_text)
-    if ex:
-        raise Exception('网络连接失败,请检查网络连接')
+    # ex = basefunction.find_element(hint_text)
+    # if ex:
+    #     raise Exception('网络连接失败,请检查网络连接')
     # 输入商户号
-    basefunction.input_element(edit_business, business)
+    # basefunction.input_element(edit_business, business)
     # 输入用户名
-    basefunction.input_element(edit_username, username)
+    # basefunction.input_element(edit_username, username)
     # 定位username，防止自动提示导致回删数据
-    basefunction.click_element(edit_username)
+    # basefunction.click_element(edit_username)
     # 输入密码
     basefunction.input_element(edit_password, password)
     # 点击登录
     basefunction.click_element(text_login)
     # 验证是否登录成功
-    try:
-        basefunction.find_element(shop_title)
-        print '登录成功'
-    except:
-        raise Exception('登录失败')
+    assert basefunction.find_element(shop_title), 'False'
+    while True:
+        update_info = basefunction.find_element(update_text_info)
+        time.sleep(2)
+        if not update_info: break
 
 
-# 获取屏幕尺寸
+# ===================>>>>>>>退出登录<<<<<<<<===============================
+
+def log_out(basefunction):
+    basefunction.click_element(menu_btn_layout)
+    swipe_up(basefunction, GetPageSize(basefunction), 0.1, 0.75, 0.1, 0.25)
+    basefunction.click_element(logout)
+    basefunction.click_element(text_confirm)
+
+
+# ===================>>>>>>>获取屏幕尺寸<<<<<<<<===============================
+
 def GetPageSize(self):
     x = self.driver.get_window_size()['width']
     y = self.driver.get_window_size()['height']
     return (x, y)
 
 
-# 页面滑动
+# ===================>>>>>>>页面滑动<<<<<<<<===============================
+
 def swipe_up(self, page_size, s_x, s_y, e_x, e_y):
     sx = page_size[0] * s_x
     sy = page_size[1] * s_y
@@ -143,6 +180,7 @@ def swipe_up(self, page_size, s_x, s_y, e_x, e_y):
     ey = page_size[1] * e_y
     self.driver.swipe(sx, sy, ex, ey, '500')
 
+# ===================>>>>>>>h5页面滑动<<<<<<<<===============================
 
 def h5_swipe_up(self, s_x, s_y, e_x, e_y, time_out=2):
     contexts = self.driver.contexts
@@ -165,3 +203,29 @@ def location_click(self, locals, click_time=500, time_out=2):
     contexts = self.driver.contexts
     self.driver.switch_to.context(contexts[1])
     time.sleep(time_out)
+
+# ===================>>>>>>>高级搜索，根据小票号<<<<<<<<===============================
+
+def search_advanced_receipts(basefunction,order_no):
+    basefunction.click_element(order_search)
+    # 输入搜索内容，小票号
+    basefunction.input_element(search_order_no, order_no)
+    # 清空搜索内容
+    basefunction.click_element(search_clear)
+    assert basefunction.find_element(search_order_no).text, '请输入销售订单号'
+    # 输入搜索内容，小票号
+    basefunction.input_element(search_order_no, order_no)
+    # 点击搜索
+    basefunction.click_element(search_query)
+    time.sleep(2)
+    swipe_up(basefunction,GetPageSize(basefunction), 0.1, 0.2, 0.1, 0.62)
+
+
+# ===================>>>>>>>高级搜索，根据sku<<<<<<<<===============================
+
+def search_advanced_sku(basefunction,sku_info):
+    basefunction.click_element(order_search)
+    basefunction.input_element(search_order_sku,sku_info)
+    basefunction.click_element(search_query)
+    time.sleep(2)
+    swipe_up(basefunction,GetPageSize(basefunction), 0.1, 0.2, 0.1, 0.62)

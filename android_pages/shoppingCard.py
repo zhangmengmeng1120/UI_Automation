@@ -2,8 +2,7 @@
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
 from android_page_location import shoppingCardLocation as scLocation
-import basePage
-from basePage import login,swipe_up,GetPageSize
+from android_page_location import basePage
 import time
 
 
@@ -15,7 +14,7 @@ class SalePage(BaseFunction):
     # 下单操作，购物车页面
     def sale_test(self, business, username, password, product_code, telphone):
 
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -81,8 +80,8 @@ class SalePage(BaseFunction):
             except:
                 raise Exception('支付出现异常')
             self.click_element(basePage.menu_btn_layout)
-            page_size = GetPageSize(self)
-            swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+            page_size = basePage.GetPageSize(self)
+            basePage.swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except Exception as e:

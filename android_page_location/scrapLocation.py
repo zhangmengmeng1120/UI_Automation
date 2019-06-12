@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding:utf-8
 from selenium.webdriver.common.by import By
-from android_pages import basePage
+import basePage
 
 # 损益单button
 scrap = (By.XPATH, "//android.widget.TextView[contains(@text,'库存损溢')]")

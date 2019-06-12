@@ -2,8 +2,7 @@
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
 from android_page_location import inventoryLocation as inLocation
-import basePage
-from basePage import login
+from android_page_location import basePage
 import time
 import random
 import sys
@@ -20,7 +19,7 @@ class Inventory(BaseFunction):
         创建盘点单
         :return:
         '''
-        login(self,business,username,password)
+        basePage.login(self,business,username,password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)

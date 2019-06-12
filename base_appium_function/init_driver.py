@@ -6,7 +6,7 @@ def init_driver():
         'platformName': 'Android',
         'platformVersion': '4.4.2',
         'deviceName': 'E9OKBC127299',
-        'appPackage': 'com.nexttao.shopforce',
+        'appPackage': 'com.nexttao.shopforce.test',
         'appActivity': 'com.nexttao.shopforce.fragment.SplashActivity',
         'unicodeKeyboard': 'True',
         'resetKeyboard': 'True',

@@ -1,10 +1,6 @@
 #!/usr/bin/python
 # encoding:utf-8
 import unittest
-import sys
-
-reload(sys)
-sys.setdefaultencoding('utf-8')
 import time
 from android_pages.shoppingCard import SalePage
 from android_pages.orderQuery import QuerySaleOrder
@@ -19,9 +15,11 @@ from android_pages.deliveryReceive import DeliveryReceive
 from android_pages.dashboard import Dashboard
 from android_pages.cloudOrder import CloudOrder
 from android_pages.reload import Reload
-
 from base_appium_function.init_driver import init_driver
 import random
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 class info(unittest.TestCase):
@@ -45,12 +43,14 @@ class info(unittest.TestCase):
     def shop_card(self):
         test_info = SalePage(self.driver)
         test_info.sale_test(self.business, self.username, self.password, self.product_code, self.telphone)
-        time.sleep(10)
 
-    def select_order(self):
+    def select_orderno(self):
         test_info = QuerySaleOrder(self.driver)
-        test_info.search_order_info(self.business, self.username, self.password, self.order_no)
-        time.sleep(10)
+        test_info.search_by_orderno(self.business, self.username, self.password, self.order_no)
+
+    def select_order_sku(self):
+        test_info = QuerySaleOrder(self.driver)
+        test_info.search_by_sku(self.business, self.username, self.password, self.product_code)
 
     def filtrate_order(self):
         test_info = QuerySaleOrder(self.driver)

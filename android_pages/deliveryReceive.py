@@ -1,12 +1,10 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-from basePage import login, swipe_up, GetPageSize
-import basePage
+from android_page_location import basePage
 from android_page_location import deliveryReceiveLocation as deLocation
 import time
 import sys
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -23,7 +21,7 @@ class DeliveryReceive(BaseFunction):
         :param password:
         :return:
         '''
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -33,12 +31,12 @@ class DeliveryReceive(BaseFunction):
             # 点击菜单
             self.click_element(basePage.menu_btn_layout)
             # 向上滑到页面
-            page_size = GetPageSize(self)
+            page_size = basePage.GetPageSize(self)
             sx = 0.1
             sy = 0.75
             ex = 0.1
             ey = 0.25
-            swipe_up(self, page_size, sx, sy, ex, ey)
+            basePage.swipe_up(self, page_size, sx, sy, ex, ey)
             # 点击门店入库
             self.click_element(deLocation.stock_in)
             # 点击配货收货
@@ -66,8 +64,8 @@ class DeliveryReceive(BaseFunction):
             self.click_element(deLocation.text_confirm_button)
             time.sleep(1)
             self.click_element(basePage.menu_btn_layout)
-            page_size = GetPageSize(self)
-            swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+            page_size = basePage.GetPageSize(self)
+            basePage.swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except:
@@ -80,7 +78,7 @@ class DeliveryReceive(BaseFunction):
         :return:
         '''
         # 登录
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -91,12 +89,12 @@ class DeliveryReceive(BaseFunction):
             # 点击菜单
             self.click_element(basePage.menu_btn_layout)
             # 向上滑到页面
-            page_size = GetPageSize(self)
+            page_size = basePage.GetPageSize(self)
             sx = 0.1
             sy = 0.75
             ex = 0.1
             ey = 0.25
-            swipe_up(self, page_size, sx, sy, ex, ey)
+            basePage.swipe_up(self, page_size, sx, sy, ex, ey)
             # 点击门店入库
             self.click_element(deLocation.stock_in)
             # 点击调拨入库
@@ -109,18 +107,18 @@ class DeliveryReceive(BaseFunction):
             self.input_element(deLocation.search_order_sku, sku)
             # 点击调拨类型
             self.click_element(deLocation.type_edit)
-            page_size = GetPageSize(self)
+            page_size = basePage.GetPageSize(self)
             sx = 0.5
             sy = 0.75
             ex = 0.5
             ey = 0.80
-            swipe_up(self, page_size, sx, sy, ex, ey)
+            basePage.swipe_up(self, page_size, sx, sy, ex, ey)
             self.click_element(deLocation.transfer_options_submit)
             # 点击查询
             self.click_element(deLocation.search_query)
             self.click_element(basePage.menu_btn_layout)
 
-            swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
+            basePage.swipe_up(self, page_size, 0.1, 0.80, 0.1, 0.10)
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except Exception as e:

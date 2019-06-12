@@ -1,12 +1,10 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-from basePage import login, swipe_up, GetPageSize
 from android_page_location import reportLocation as reLocation
-import basePage
+from android_page_location import basePage
 import sys
 import time
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -16,7 +14,7 @@ class Report(BaseFunction):
         BaseFunction.__init__(self, driver)
 
     def basic_report_act(self, business, username, password):
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -40,7 +38,7 @@ class Report(BaseFunction):
             raise Exception('报表查询操作出现异常')
 
     def shop_inventory(self, business, username, password):
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -59,7 +57,7 @@ class Report(BaseFunction):
             raise Exception('报表查询操作出现异常')
 
     def shop_inventory_diff(self, business, username, password):
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)

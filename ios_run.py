@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     # ===================>>>>>>>查询订单<<<<<<<<===============================
     # 根据小票号查询
-    # suite.addTest(info('select_order'))
+    suite.addTest(info('select_order'))
 
     # 根据小票号查询
     # suite.addTest(info('select_order_sku'))
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     # 查询报表
     # suite.addTest(info('basic_report_act'))
 
-    # ===================>>>>>>>调拨出库<<<<<<<<===============================
+    # ===================>>>>>>>调拨入库<<<<<<<<===============================
 
     # 调拨入库，高级搜索
     # suite.addTest(info('transfer_search'))
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     # 库存损益单创建
     # suite.addTest(info('scrapCreate'))
     # 库存损益单提交损益
-    suite.addTest(info('scrapUpload'))
+    # suite.addTest(info('scrapUpload'))
     # 库存损益单高级搜索
     # suite.addTest(info('scrap_search'))
 

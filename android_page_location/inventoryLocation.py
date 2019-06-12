@@ -2,7 +2,10 @@
 # encoding:utf-8
 from selenium.webdriver.common.by import By
 import random
-from android_pages import basePage
+import basePage
+
+
+
 # 门店盘点button
 module_item_name = (By.XPATH, "//android.widget.TextView[contains(@text,'门店盘点')]")
 # 检查是否存在盘点中的单子

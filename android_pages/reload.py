@@ -1,12 +1,10 @@
 #!/usr/bin/python
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
-import basePage
-from basePage import login, GetPageSize, swipe_up
+from android_page_location import basePage
 from android_page_location import reloadLocation as reLocation
 import time
 import sys
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -16,7 +14,7 @@ class Reload(BaseFunction):
         BaseFunction.__init__(self, driver)
 
     def basic_reload_act(self, business, username, password, product_codes):
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         self.driver.wait_activity(".bash.ui.MainActivity", 10)
         while True:
             update_info = self.find_element(basePage.update_text_info)
@@ -26,12 +24,12 @@ class Reload(BaseFunction):
 
             self.click_element(basePage.menu_btn_layout)
 
-            page_size = GetPageSize(self)
+            page_size = basePage.GetPageSize(self)
             sx = 0.1
             sy = 0.75
             ex = 0.1
             ey = 0.25
-            swipe_up(self, page_size, sx, sy, ex, ey)
+            basePage.swipe_up(self, page_size, sx, sy, ex, ey)
             self.click_element(reLocation.module_item_name, timeout=1)
 
             # ===================>>>>>>>我的云单<<<<<<<<===============================

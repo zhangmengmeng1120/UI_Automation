@@ -2,12 +2,10 @@
 # encoding:utf-8
 from base_appium_function.base_function import BaseFunction
 from android_page_location import memberCenterLocation as memLocation
-import basePage
-from basePage import login,GetPageSize,swipe_up
+from android_page_location import basePage
 import time
 import random
 import sys
-
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -33,7 +31,7 @@ class MemberCenter(BaseFunction):
         '''
         搜索会员，会员画像，会员资料，历史订单，优惠券
         '''
-        login(self, business, username, password)
+        basePage.login(self, business, username, password)
         while True:
             update_info = self.find_element(basePage.update_text_info)
             time.sleep(2)
@@ -79,7 +77,7 @@ class MemberCenter(BaseFunction):
             sy = 0.25
             ex = 0.1
             ey = 0.75
-            swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
+            basePage.swipe_up(self, basePage.GetPageSize(self), sx, sy, ex, ey)
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except Exception as e:
@@ -90,7 +88,7 @@ class MemberCenter(BaseFunction):
         注册会员，添加新会员标签
         '''
 
-        login(self,business, username, password)
+        basePage.login(self,business, username, password)
         while True:
             update_info = self.find_element(basePage.update_text_info)
             time.sleep(2)
@@ -148,7 +146,7 @@ class MemberCenter(BaseFunction):
             sy = 0.25
             ex = 0.1
             ey = 0.75
-            swipe_up(self, GetPageSize(self), sx, sy, ex, ey)
+            basePage.swipe_up(self, basePage.GetPageSize(self), sx, sy, ex, ey)
             self.click_element(basePage.logout)
             self.click_element(basePage.text_confirm)
         except Exception as e:
